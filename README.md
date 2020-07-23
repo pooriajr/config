@@ -1,4 +1,5 @@
 # My minimal and no fuss macOS setup
+
 I should be able to factory reset my mac and get right back to these settings in < 1 hour.
 If it's not here, I don't need it. 
 Convention Over Configuration.
@@ -43,5 +44,7 @@ Convention Over Configuration.
 - Enable Clipboard History
 
 # Dev Environment
+- Homebrew
+- rbenv
 - My .vimrc
 - My .zshrc
