@@ -9,39 +9,40 @@ Convention Over Configuration.
 - Firefox
 - 1Password 
 - Truple (Screenshot Accountability)
-- Magnet / Rectangle (Window Manager)
+- Magnet (Window Manager)
 - Monosnap (Better Screenshots)
 - Alfred Powerpack (App switcher + Clipboard History)
+- Cold Turkey (Limit Computer Usage)
 
 ## Optional Apps
 - Calibre (E-books)
 - Chrome
 - Transmit (FTP)
-- Dash (Offline Documentation)
 - 2Do 
 - Figma
 - Photoshop
-- Cold Turkey (Block Computer Usage)
-- Clean Browsing (Block distractions)
 
 ## MacOS Configuration
 - Dark mode, nerd.
 - Night Shift (sunset to sunrise)
-- Dock hidden, on right (don't even use it)
-- Disable Spotlight keyboard shortcuts
+- Dock empty, hidden, on right side, and don't show recent apps
+- Disable Spotlight keyboard shortcuts (we use Alfred)
 - Max scaled resolution
 - Max key repeat speed and minimum delay
 - Mouse scroll NOT natural
 
 ## iterm2 Config
 - Dark Background theme (it's default)
+- Compact Theme
 
 ## Firefox Config
-- Just log in to my account to synchronize Tridactyl
+- Log in to my account to synchronize plugins
 
 ## Alfred Config
 - Open with Command + Space
 - Enable Clipboard History
+- MacOS Dark theme and 
+- Hide the hat and menu bar icon
 
 # Dev Environment
 - Homebrew
