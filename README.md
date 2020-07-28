@@ -6,7 +6,7 @@ Convention Over Configuration.
 
 ## Crucial Apps
 - iTerm2
-- Firefox
+- Firefox Developer
 - 1Password 
 - Truple (Screenshot Accountability)
 - Magnet (Window Manager)
@@ -16,14 +16,14 @@ Convention Over Configuration.
 
 ## Optional Apps
 - Calibre (E-books)
-- Chrome
+- Chrome (Cross Browser Testing)
 - Transmit (FTP)
-- 2Do 
-- Figma
-- Photoshop
+- 2Do (Task Management)
+- Figma (Web Design)
+- GIMP (Photo editing)
 
 ## MacOS Configuration
-- Dark mode, nerd.
+- No dark mode, just turn brightness down, nerd.
 - Night Shift (sunset to sunrise)
 - Dock empty, hidden, on right side, and don't show recent apps
 - Disable Spotlight keyboard shortcuts (we use Alfred)
@@ -31,9 +31,9 @@ Convention Over Configuration.
 - Max key repeat speed and minimum delay
 - Mouse scroll NOT natural
 
-## iterm2 Config
-- Dark Background theme (it's default)
-- Compact Theme
+## Iterm2 Config
+- Default color theme ("Dark Background")
+- "Minimal" theme
 
 ## Firefox Config
 - Log in to my account to synchronize plugins
@@ -41,11 +41,10 @@ Convention Over Configuration.
 ## Alfred Config
 - Open with Command + Space
 - Enable Clipboard History
-- MacOS Dark theme and 
+- MacOS theme 
 - Hide the hat and menu bar icon
 
-# Dev Environment
-- Homebrew
+# Dev Environment - Homebrew
 - rbenv
-- My .vimrc
-- My .zshrc
+- My .vimrc (run setup.sh)
+- Powerline 10k with "lean style" defaults (run setup.sh)
