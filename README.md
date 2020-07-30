@@ -15,6 +15,7 @@ Convention Over Configuration.
 - Cold Turkey (Limit Computer Usage)
 
 ## Optional Apps
+- Airmail (Multiple email accounts)
 - Calibre (E-books)
 - Chrome (Cross Browser Testing)
 - Transmit (FTP)
