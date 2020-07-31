@@ -1,10 +1,16 @@
 # import aliases
-source $HOME/.aliases
+source ~/.aliases
 
 # automatic directory switching (zsh feature)
 setopt autocd
 
-# for rbenv (install via homebrew)
+# require by rbenv 
 eval "$(rbenv init -)"
-source ~/powerlevel10k/powerlevel10k.zsh-theme
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Plugins
+source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/zsh-z/zsh-z.plugin.zsh
+
+# My custom p10k config
+source ~/.p10k.zsh
