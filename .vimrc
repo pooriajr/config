@@ -1,6 +1,8 @@
 inoremap jk <Esc>
 noremap ; :
 syntax on
+
+" Dark grey line numbers
 set number
 highlight LineNr ctermfg=darkgrey
 
