@@ -5,3 +5,5 @@ alias gcam='git commit -am'
 alias gco='git checkout'
 alias gp='git push'
 alias ls='ls -A'
+
+alias kill3000='lsof -ti:3000 | xargs kill'
