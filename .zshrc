@@ -4,6 +4,9 @@ source ~/.aliases
 # automatic directory switching (zsh feature)
 setopt autocd
 
+# use nvim by default
+export EDITOR="nvim"
+
 # require by rbenv 
 eval "$(rbenv init -)"
 
