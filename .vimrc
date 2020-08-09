@@ -23,7 +23,7 @@ nnoremap <leader>q <C-W><C-Q>
 
 " Shortcuts
 nnoremap <leader>w :w<CR>
-" nnoremap <leader>r :source $MYVIMRC<CR>
+nnoremap <leader>r :source $MYVIMRC<CR> 
 nnoremap <leader>g :Goyo<CR>
 nnoremap <leader>f :FZF<CR>
 nnoremap <leader>v :tabedit ~/.vimrc<CR>
@@ -38,11 +38,6 @@ if has('nvim')
   tnoremap <A-j> <C-\><C-n><C-w>j
   tnoremap <A-k> <C-\><C-n><C-w>k
   tnoremap <A-l> <C-\><C-n><C-w>l
-endif
-
-" Source the vimrc file after saving it
-if has("autocmd")
-  autocmd bufwritepost .vimrc source $MYVIMRC
 endif
 
 " Treat all .md files as markdown
@@ -64,15 +59,16 @@ Plug 'tpope/vim-endwise'
 Plug 'preservim/nerdtree'
 Plug 'arcticicestudio/nord-vim'
 Plug 'itchyny/lightline.vim'
+set noshowmode
 Plug 'airblade/vim-gitgutter'
 set updatetime=100
 
 " Initialize plugin system
 call plug#end()
 
-colorscheme nord
-set termguicolors
-
 let g:lightline = {
       \ 'colorscheme': 'nord',
       \ }
+
+colorscheme nord
+set termguicolors
