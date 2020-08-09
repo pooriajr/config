@@ -14,3 +14,4 @@ source ~/.zsh/zsh-z/zsh-z.plugin.zsh
 
 # My custom p10k config
 source ~/.p10k.zsh
+

@@ -4,7 +4,7 @@ I should be able to factory reset my mac and get right back to these settings in
 If it's not here, I don't need it. 
 Convention Over Configuration.
 
-## Crucial Apps
+## Core Apps
 - iTerm2
 - Firefox Developer
 - 1Password 
@@ -13,28 +13,28 @@ Convention Over Configuration.
 - Monosnap (Better Screenshots)
 - Alfred Powerpack (App switcher + Clipboard History)
 - Cold Turkey (Limit Computer Usage)
-
-## Optional Apps
-- Airmail (Multiple email accounts)
-- Calibre (E-books)
-- Chrome (Cross Browser Testing)
-- Transmit (FTP)
+- VS Code (For IDE features)
 - 2Do (Task Management)
+- Horo (Timer for timeboxing)
+
+## More Apps
+- Airmail (Multiple email accounts)
+- Chrome (Cross Browser Testing)
 - Figma (Web Design)
 - GIMP (Photo editing)
 
 ## MacOS Configuration
 - No dark mode, just turn brightness down, nerd.
 - Night Shift (sunset to sunrise)
-- Dock empty, hidden, on right side, and don't show recent apps
+- Hide dock
 - Disable Spotlight keyboard shortcuts (we use Alfred)
 - Max scaled resolution
 - Max key repeat speed and minimum delay
 - Mouse scroll NOT natural
 
 ## Iterm2 Config
-- Default color theme ("Dark Background")
-- "Minimal" theme
+- Nord terminal colors 
+- "Minimal" theme option (settings > appearance)
 
 ## Firefox Config
 - Log in to my account to synchronize plugins
@@ -45,7 +45,6 @@ Convention Over Configuration.
 - MacOS theme 
 - Hide the hat and menu bar icon
 
-# Dev Environment - Homebrew
-- rbenv
-- My .vimrc (run setup.sh)
+# Dev Environment 
+- Install my .vimrc (run setup.sh)
 - Powerline 10k with "lean style" defaults (run setup.sh)
