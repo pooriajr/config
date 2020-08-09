@@ -23,17 +23,12 @@ nnoremap <leader>q <C-W><C-Q>
 
 " Shortcuts
 nnoremap <leader>w :w<CR>
-nnoremap <leader>r :source $MYVIMRC<CR>
+" nnoremap <leader>r :source $MYVIMRC<CR>
 nnoremap <leader>g :Goyo<CR>
 nnoremap <leader>f :FZF<CR>
-nnoremap <leader>v :tabedit $MYVIMRC<CR>
+nnoremap <leader>v :tabedit ~/.vimrc<CR>
 map <leader>nf :NERDTreeFocus<CR>
 map <leader>nt :NERDTreeToggle<CR>
-
-" Source the vimrc file after saving it
-if has("autocmd")
-  autocmd bufwritepost .vimrc source $MYVIMRC
-endif
 
 " Terminal
 if has('nvim')
@@ -43,6 +38,11 @@ if has('nvim')
   tnoremap <A-j> <C-\><C-n><C-w>j
   tnoremap <A-k> <C-\><C-n><C-w>k
   tnoremap <A-l> <C-\><C-n><C-w>l
+endif
+
+" Source the vimrc file after saving it
+if has("autocmd")
+  autocmd bufwritepost .vimrc source $MYVIMRC
 endif
 
 " Treat all .md files as markdown
