@@ -1,0 +1,7 @@
+[alias]
+	s = status
+[core]
+	editor = nvim
+[user]
+	name = Kian
+	email = kianr@hey.com

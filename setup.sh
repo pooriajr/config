@@ -1,23 +1,18 @@
-# stop macOS from creating DS_Store files everywhere
-defaults write com.apple.desktopservices DSDontWriteNetworkStores true
-
-# create a .vimrc file from my config
+# link dotfiles
 ln -sf ~/repos/config/.vimrc ~
 echo "linked vimrc"
 
-# create a .zshrc file with my config... 
-ln -sf ~/repos/config/.zshrc ~
-echo "linked zsrhc"
+ln -sf ~/repos/config/.bashrc ~
+echo "linked bashrc"
 
-# create aliases file that can be shared by zsh and bash
 ln -sf ~/repos/config/.aliases ~
 echo "linked aliases"
 
-# plugins
-ln -sf ~/repos/config/.zsh ~
+ln -sf ~/repos/config/.gitconfig ~
+echo "linked .gitconfig"
 
-# my custom p10k config
-ln -sf ~/repos/config/.p10k.zsh ~
+# z
+ln -sf ~/repos/config/z.sh ~
 
-# reload zsh
-zsh
+# reload bash
+bash
