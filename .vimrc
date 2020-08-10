@@ -30,7 +30,7 @@ nnoremap <leader>q <C-W><C-Q>
 " Shortcuts
 nnoremap <leader>w :w<CR>
 nnoremap <leader>r :source $MYVIMRC<CR> 
-nnoremap <leader>g :Git
+nnoremap <leader>g :Git 
 nnoremap <leader>f :FZF<CR>
 nnoremap <leader>v :tabedit ~/.vimrc<CR>
 nnoremap <leader>n :NERDTreeToggle<CR>
@@ -65,6 +65,7 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-rbenv'
+Plug 'tpope/vim-unimpaired'
 Plug 'preservim/nerdtree'
 Plug 'arcticicestudio/nord-vim'
 Plug 'itchyny/lightline.vim'

@@ -1,7 +1,12 @@
 [alias]
 	s = status
+	l = log
+	c = commit
+  co = checkout
+  p = push
 [core]
-	editor = nvim
+	editor = vim
+	excludesFile = ~/.gitignore
 [user]
 	name = Kian
 	email = kianr@hey.com
