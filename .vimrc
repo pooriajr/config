@@ -13,14 +13,15 @@ set smartindent
 " Leader
 let mapleader = " "
 
-" Change cursor by mode (Iterm2)
+" Change cursor by mode in Iterm2
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let jt_SR = "\<Esc>]50;CursorShape=2\x7"
+let &t_SR = "\<Esc>]50;CursorShape=2\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 " Improve splits
 set splitbelow
 set splitright
+nnoremap <leader>w <C-W>
 nnoremap <C-h> <C-W>h
 nnoremap <C-j> <C-W>j
 nnoremap <C-k> <C-W>k
@@ -28,12 +29,12 @@ nnoremap <C-l> <C-W>l
 nnoremap <leader>q <C-W><C-Q>
 
 " Shortcuts
-nnoremap <leader>w :w<CR>
 nnoremap <leader>r :source $MYVIMRC<CR> 
 nnoremap <leader>g :Git 
 nnoremap <leader>f :FZF<CR>
 nnoremap <leader>v :tabedit ~/.vimrc<CR>
 nnoremap <leader>n :NERDTreeToggle<CR>
+nnoremap !! :!!<CR>
 
 " Faster commands
 nnoremap : ;
