@@ -9,6 +9,9 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 set smartindent
+set hlsearch
+set undofile
+set undodir=$HOME/.vim/undo
 
 " Leader
 let mapleader = " "
@@ -21,7 +24,7 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 " Improve splits
 set splitbelow
 set splitright
-nnoremap <leader>w <C-W>
+nnoremap <leader>w :w<CR>
 nnoremap <C-h> <C-W>h
 nnoremap <C-j> <C-W>j
 nnoremap <C-k> <C-W>k
@@ -34,6 +37,7 @@ nnoremap <leader>g :Git
 nnoremap <leader>f :FZF<CR>
 nnoremap <leader>v :tabedit ~/.vimrc<CR>
 nnoremap <leader>n :NERDTreeToggle<CR>
+nnoremap <leader>/ :nohl<CR>
 nnoremap !! :!!<CR>
 
 " Faster commands
@@ -67,18 +71,31 @@ Plug 'tpope/vim-rails'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-rbenv'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-repeat'
 Plug 'preservim/nerdtree'
 Plug 'arcticicestudio/nord-vim'
 Plug 'itchyny/lightline.vim'
 set noshowmode
 Plug 'airblade/vim-gitgutter'
 set updatetime=500
+Plug 'rizzatti/dash.vim'
+Plug 'mattn/emmet-vim'
+Plug 'kana/vim-textobj-user'
+Plug 'whatyouhide/vim-textobj-erb'
 
 " Initialize plugin system
 call plug#end()
 
 let g:lightline = {
       \ 'colorscheme': 'nord',
+      \'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'FugitiveHead'
+      \ },
       \ }
 colorscheme nord
 
