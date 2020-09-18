@@ -1,4 +1,8 @@
 inoremap jk <Esc>
+tnoremap jk <C-\><C-n> 
+nnoremap Q @@
+set smartcase
+set ignorecase
 syntax on
 set cursorline
 set number
@@ -36,19 +40,14 @@ nnoremap <leader>r :source $MYVIMRC<CR>
 nnoremap <leader>g :Git 
 nnoremap <leader>f :FZF<CR>
 nnoremap <leader>v :tabedit ~/.vimrc<CR>
-nnoremap <leader>n :NERDTreeToggle<CR>
+nnoremap <leader>nn :NERDTreeToggle<CR>
+nnoremap <leader>nf :NERDTreeFind<CR>
 nnoremap <leader>/ :nohl<CR>
+nnoremap <leader>t :terminal<CR>
 nnoremap !! :!!<CR>
-
-" Faster commands
-nnoremap : ;
-nnoremap ; :
 
 " Treat all .md files as markdown
 autocmd BufNewFile,BufRead *.md set filetype=markdown
-
-" Set autoformatting of paragraphs
-autocmd Filetype markdown setlocal formatoptions=aw2tq
 
 " Auto install vim plug if it doesn't already exist
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -60,29 +59,42 @@ endif
 " Specify a directory for plugins
 call plug#begin('~/.vim/plugged')
 
+"Navigation
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'junegunn/goyo.vim'
+Plug 'preservim/nerdtree'
+
+"Formatting
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-rails'
-Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-rbenv'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-repeat'
-Plug 'preservim/nerdtree'
+Plug 'mattn/emmet-vim'
+
+"Rails
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-rbenv'
+
+"Git
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+set updatetime=500 "update gitgutter every 500 milisecond
+
+"Aesthetics
 Plug 'arcticicestudio/nord-vim'
 Plug 'itchyny/lightline.vim'
-set noshowmode
-Plug 'airblade/vim-gitgutter'
-set updatetime=500
-Plug 'rizzatti/dash.vim'
-Plug 'mattn/emmet-vim'
+set noshowmode "hide the default status line since we have lightline
+Plug 'junegunn/goyo.vim'
+
+"Text objects
 Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-entire'
+Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'whatyouhide/vim-textobj-erb'
+
+"Settings
+Plug 'tpope/vim-sensible'
 
 " Initialize plugin system
 call plug#end()
@@ -100,14 +112,3 @@ let g:lightline = {
 colorscheme nord
 
 set termguicolors
-
-if has('nvim')
-" Terminal
-  nnoremap <leader>t :vsplit term://<CR>
-  tnoremap <Esc> <C-\><C-n>
-  tnoremap <A-h> <C-\><C-n><C-w>h
-  tnoremap <A-j> <C-\><C-n><C-w>j
-  tnoremap <A-k> <C-\><C-n><C-w>k
-  tnoremap <A-l> <C-\><C-n><C-w>l
-endif
-
