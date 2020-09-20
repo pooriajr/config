@@ -69,6 +69,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-abolish'
 Plug 'mattn/emmet-vim'
 
 "Rails

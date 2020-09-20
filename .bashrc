@@ -1,3 +1,6 @@
+set -o vi
+export EDITOR=vim
+
 eval "$(rbenv init -)"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
