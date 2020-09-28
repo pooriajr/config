@@ -52,7 +52,7 @@ autocmd BufNewFile,BufRead *.md set filetype=markdown
 " Auto install vim plug if it doesn't already exist
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
@@ -107,9 +107,26 @@ let g:lightline = {
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
       \ },
       \ 'component_function': {
+      \   'filename': 'LightlineFilename',
       \   'gitbranch': 'FugitiveHead'
-      \ },
       \ }
+      \ }
+
+function! LightlineFilename()
+  let root = fnamemodify(get(b:, 'git_dir'), ':h')
+  let path = expand('%:p')
+  if path[:len(root)-1] ==# root
+    return path[len(root)+1:]
+  endif
+  return expand('%')
+endfunction
+
 colorscheme nord
 
+"open fzf in popover window
+let g:fzf_layout = {  'window': { 'yoffset': 1 ,'width': 0.5, 'height': 0.4 } }
+
 set termguicolors
+
+"prevent broken syntax highlighting
+autocmd BufEnter * :syntax sync fromstart
