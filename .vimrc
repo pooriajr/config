@@ -1,6 +1,3 @@
-inoremap jk <Esc>
-tnoremap jk <C-\><C-n> 
-nnoremap Q @@
 set smartcase
 set ignorecase
 syntax on
@@ -14,6 +11,7 @@ set shiftwidth=2
 set expandtab
 set smartindent
 set hlsearch
+set linebreak
 set undofile
 set undodir=$HOME/.vim/undo
 
@@ -36,6 +34,7 @@ nnoremap <C-l> <C-W>l
 nnoremap <leader>q <C-W><C-Q>
 
 " Shortcuts
+nnoremap Q @@
 nnoremap <leader>r :source $MYVIMRC<CR> 
 nnoremap <leader>g :Git 
 nnoremap <leader>f :FZF<CR>
@@ -43,8 +42,16 @@ nnoremap <leader>v :tabedit ~/.vimrc<CR>
 nnoremap <leader>nn :NERDTreeToggle<CR>
 nnoremap <leader>nf :NERDTreeFind<CR>
 nnoremap <leader>/ :nohl<CR>
-nnoremap <leader>t :terminal<CR>
 nnoremap !! :!!<CR>
+nnoremap <leader>t :terminal<CR>
+nnoremap <leader>c :%y*<CR>
+
+" Terminal
+tnoremap <Esc><Esc> <C-\><C-n> 
+tnoremap <C-h> <C-W>h
+tnoremap <C-j> <C-W>j
+tnoremap <C-k> <C-W>k
+tnoremap <C-l> <C-W>l
 
 " Treat all .md files as markdown
 autocmd BufNewFile,BufRead *.md set filetype=markdown
@@ -63,6 +70,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'preservim/nerdtree'
+Plug 'ludovicchabant/vim-gutentags'
 
 "Formatting
 Plug 'tpope/vim-surround'
@@ -70,6 +78,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-unimpaired'
 Plug 'mattn/emmet-vim'
 
 "Rails
