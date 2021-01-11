@@ -44,7 +44,7 @@ nnoremap <leader>nf :NERDTreeFind<CR>
 nnoremap <leader>/ :nohl<CR>
 nnoremap !! :!!<CR>
 nnoremap <leader>t :terminal<CR>
-nnoremap <leader>c :%y*<CR>
+vnoremap <leader>c "*y
 
 " Terminal
 tnoremap <Esc><Esc> <C-\><C-n> 
@@ -102,6 +102,9 @@ Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'whatyouhide/vim-textobj-erb'
+
+"UNIX
+Plug 'tpope/vim-eunuch'
 
 "Settings
 Plug 'tpope/vim-sensible'

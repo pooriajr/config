@@ -6,7 +6,7 @@
   p = push
 [core]
 	editor = vim
-	excludesfile = /Users/kian/.gitignore
+	excludesfile = ~/.gitignore_global
 [user]
 	name = Kian
 	email = kianr@hey.com
