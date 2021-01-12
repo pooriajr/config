@@ -12,6 +12,7 @@ set expandtab
 set smartindent
 set hlsearch
 set linebreak
+set shiftround 
 set undofile
 set undodir=$HOME/.vim/undo
 
