@@ -35,6 +35,8 @@ nnoremap <C-l> <C-W>l
 nnoremap <leader>q <C-W><C-Q>
 
 " Shortcuts
+nnoremap j gj
+nnoremap k gk
 nnoremap Q @@
 nnoremap <leader>r :source $MYVIMRC<CR> 
 nnoremap <leader>g :Git 
@@ -45,6 +47,7 @@ nnoremap <leader>nf :NERDTreeFind<CR>
 nnoremap <leader>/ :nohl<CR>
 nnoremap !! :!!<CR>
 nnoremap <leader>t :terminal<CR>
+inoremap <C-d> <Del>
 vnoremap <leader>c "*y
 
 " Terminal
@@ -71,7 +74,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'preservim/nerdtree'
-Plug 'ludovicchabant/vim-gutentags'
 
 "Formatting
 Plug 'tpope/vim-surround'
@@ -97,6 +99,7 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'itchyny/lightline.vim'
 set noshowmode "hide the default status line since we have lightline
 Plug 'junegunn/goyo.vim'
+Plug 'yuttie/comfortable-motion.vim'
 
 "Text objects
 Plug 'kana/vim-textobj-user'
