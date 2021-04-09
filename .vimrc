@@ -39,7 +39,8 @@ nnoremap k gk
 nnoremap Q @@
 nnoremap <leader>r :source $MYVIMRC<CR> 
 nnoremap <leader>g :Git 
-nnoremap <leader>f :FZF<CR>
+" nnoremap <leader>f :FZF<CR>
+nnoremap <leader>f :FilesMru --tiebreak=end<cr>
 nnoremap <leader>v :tabedit ~/.vimrc<CR>
 nnoremap <leader>nn :NERDTreeToggle<CR>
 nnoremap <leader>nf :NERDTreeFind<CR>
@@ -71,6 +72,7 @@ call plug#begin('~/.vim/plugged')
 "Navigation
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'tweekmonster/fzf-filemru'
 Plug 'preservim/nerdtree'
 Plug 'easymotion/vim-easymotion'
 
