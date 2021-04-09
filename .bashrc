@@ -19,9 +19,11 @@ if [ -e ~/.git-prompt.sh ]; then
 fi
 PS1='\[\e[34m\]\u\[\e[1;32m\]@\[\e[0;33m\]\h\[\e[35m\]:\[\e[m\]\w\[\e[1;30m\]$(__git_ps1)\[\e[1;31m\]> \[\e[0m\]'
 
+# Aliases
 alias g='git'
 alias gcam='git commit -a -m'
 alias gco='git checkout'
 alias gs='git status'
+alias gp='git push'
 
 alias ..='cd ..'
