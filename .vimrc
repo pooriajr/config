@@ -11,7 +11,6 @@ set shiftwidth=2
 set expandtab
 set smartindent
 set hlsearch
-set linebreak
 set shiftround 
 set undofile
 set undodir=$HOME/.vim/undo
@@ -52,7 +51,6 @@ vnoremap <leader>c "*y
 
 " Terminal
 tnoremap <Esc><Esc> <C-\><C-n> 
-tnoremap <C-h> <C-W>h
 tnoremap <C-j> <C-W>j
 tnoremap <C-k> <C-W>k
 tnoremap <C-l> <C-W>l
@@ -74,6 +72,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'preservim/nerdtree'
+Plug 'easymotion/vim-easymotion'
 
 "Formatting
 Plug 'tpope/vim-surround'
@@ -83,6 +82,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-unimpaired'
 Plug 'mattn/emmet-vim'
+Plug 'AndrewRadev/splitjoin.vim'
 
 "Rails
 Plug 'tpope/vim-rails'
@@ -95,11 +95,15 @@ Plug 'airblade/vim-gitgutter'
 set updatetime=500 "update gitgutter every 500 milisecond
 
 "Aesthetics
+Plug 'w0ng/vim-hybrid'
 Plug 'arcticicestudio/nord-vim'
+Plug 'srcery-colors/srcery-vim'
 Plug 'itchyny/lightline.vim'
+
 set noshowmode "hide the default status line since we have lightline
 Plug 'junegunn/goyo.vim'
-Plug 'yuttie/comfortable-motion.vim'
+Plug 'evanleck/vim-svelte', {'branch': 'main'}
+Plug 'sheerun/vim-polyglot'
 
 "Text objects
 Plug 'kana/vim-textobj-user'
@@ -112,6 +116,9 @@ Plug 'tpope/vim-eunuch'
 
 "Settings
 Plug 'tpope/vim-sensible'
+
+"Other
+Plug 'dbeniamine/cheat.sh-vim'
 
 " Initialize plugin system
 call plug#end()
@@ -146,3 +153,16 @@ set termguicolors
 
 "prevent broken syntax highlighting
 autocmd BufEnter * :syntax sync fromstart
+
+"easymotion
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+" Jump to anywhere you want with minimal keystrokes, with just one key binding.
+nmap s <Plug>(easymotion-overwin-f2)
+
+" Turn on case-insensitive feature
+let g:EasyMotion_smartcase = 1
+
+" JK motions: Line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)

@@ -9,7 +9,7 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden'
 
 source ~/z.sh
 
-export PATH="$PATH:/Users/kian/Library/Python/3.9/bin"
+export PATH="$PATH:/Users/kian/Library/Python/3.9/bin:~/bin"
 
 # Prompt
 # --------------------------------------------------------------------
@@ -21,4 +21,7 @@ PS1='\[\e[34m\]\u\[\e[1;32m\]@\[\e[0;33m\]\h\[\e[35m\]:\[\e[m\]\w\[\e[1;30m\]$(_
 
 alias g='git'
 alias gcam='git commit -a -m'
+alias gco='git checkout'
+alias gs='git status'
+
 alias ..='cd ..'
