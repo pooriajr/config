@@ -2,10 +2,10 @@ set smartcase
 set ignorecase
 syntax on
 set cursorline
-set number
 set hidden
 set mouse=a
 set visualbell
+set nowrap
 set tabstop=2
 set shiftwidth=2
 set expandtab
@@ -37,11 +37,12 @@ nnoremap <leader>q <C-W><C-Q>
 nnoremap j gj
 nnoremap k gk
 nnoremap Q @@
-nnoremap <leader>r :source $MYVIMRC<CR> 
 nnoremap <leader>g :Git 
-" nnoremap <leader>f :FZF<CR>
-nnoremap <leader>f :FilesMru --tiebreak=end<cr>
-nnoremap <leader>v :tabedit ~/.vimrc<CR>
+nnoremap <leader>r :Rg<CR> 
+nnoremap <leader>f :FilesMru --tiebreak=end<CR>
+nnoremap <leader>vv :tabedit ~/.vimrc<CR>
+nnoremap <leader>vr :source $MYVIMRC<CR> 
+nnoremap <leader>vp :PlugInstall<CR>
 nnoremap <leader>nn :NERDTreeToggle<CR>
 nnoremap <leader>nf :NERDTreeFind<CR>
 nnoremap <leader>/ :nohl<CR>
@@ -75,9 +76,12 @@ Plug 'junegunn/fzf.vim'
 Plug 'tweekmonster/fzf-filemru'
 Plug 'preservim/nerdtree'
 Plug 'easymotion/vim-easymotion'
+Plug 'terryma/vim-expand-region'
 
 "Formatting
 Plug 'tpope/vim-surround'
+let g:surround_{char2nr('=')} = "<%= \r %>"
+let g:surround_{char2nr('-')} = "<% \r %>"
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-repeat'
@@ -85,6 +89,13 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-unimpaired'
 Plug 'mattn/emmet-vim'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'AndrewRadev/sideways.vim'
+nnoremap H :SidewaysLeft<cr>
+nnoremap L :SidewaysRight<cr>
+omap aa <Plug>SidewaysArgumentTextobjA
+xmap aa <Plug>SidewaysArgumentTextobjA
+omap ia <Plug>SidewaysArgumentTextobjI
+xmap ia <Plug>SidewaysArgumentTextobjI
 
 "Rails
 Plug 'tpope/vim-rails'
@@ -165,3 +176,4 @@ let g:EasyMotion_smartcase = 1
 " JK motions: Line motions
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
+map <Leader>l <Plug>(easymotion-lineforward)
