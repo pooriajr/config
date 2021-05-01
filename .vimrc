@@ -14,6 +14,8 @@ set hlsearch
 set shiftround 
 set undofile
 set undodir=$HOME/.vim/undo
+set foldmethod=syntax
+set foldlevelstart=99 "start file with all folds opened
 
 " Leader
 let mapleader = " "
@@ -96,6 +98,9 @@ omap aa <Plug>SidewaysArgumentTextobjA
 xmap aa <Plug>SidewaysArgumentTextobjA
 omap ia <Plug>SidewaysArgumentTextobjI
 xmap ia <Plug>SidewaysArgumentTextobjI
+Plug 'Chiel92/vim-autoformat'
+noremap <leader>= :Autoformat<CR>
+
 
 "Rails
 Plug 'tpope/vim-rails'
@@ -112,6 +117,7 @@ Plug 'w0ng/vim-hybrid'
 Plug 'arcticicestudio/nord-vim'
 Plug 'srcery-colors/srcery-vim'
 Plug 'itchyny/lightline.vim'
+Plug 'cocopon/iceberg.vim'
 
 set noshowmode "hide the default status line since we have lightline
 Plug 'junegunn/goyo.vim'
@@ -132,12 +138,13 @@ Plug 'tpope/vim-sensible'
 
 "Other
 Plug 'dbeniamine/cheat.sh-vim'
+Plug 'mhinz/vim-startify'
 
 " Initialize plugin system
 call plug#end()
 
 let g:lightline = {
-      \ 'colorscheme': 'nord',
+      \ 'colorscheme': 'iceberg',
       \'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
@@ -154,7 +161,7 @@ function! LightlineFilename()
   return cwd . '/' . path
 endfunction
 
-colorscheme nord
+colorscheme iceberg
 
 "open fzf in popover window
 let g:fzf_layout = {  'window': { 'yoffset': 1 ,'width': 0.5, 'height': 0.4 } }
