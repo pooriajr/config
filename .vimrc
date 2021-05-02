@@ -4,18 +4,15 @@ syntax on
 set cursorline
 set hidden
 set mouse=a
-set visualbell
-set nowrap
 set tabstop=2
 set shiftwidth=2
 set expandtab
 set smartindent
-set hlsearch
 set shiftround 
 set undofile
 set undodir=$HOME/.vim/undo
-set foldmethod=syntax
-set foldlevelstart=99 "start file with all folds opened
+set redrawtime=10000 "prevents broken syntax highlighting on large files
+autocmd BufWritePost * :syntax sync fromstart "refresh syntax highlighting on save
 
 " Leader
 let mapleader = " "
@@ -52,6 +49,8 @@ nnoremap !! :!!<CR>
 nnoremap <leader>t :terminal<CR>
 inoremap <C-d> <Del>
 vnoremap <leader>c "*y
+nnoremap <C-N><C-N> :set invnumber<CR>
+
 
 " Terminal
 tnoremap <Esc><Esc> <C-\><C-n> 
@@ -78,7 +77,16 @@ Plug 'junegunn/fzf.vim'
 Plug 'tweekmonster/fzf-filemru'
 Plug 'preservim/nerdtree'
 Plug 'easymotion/vim-easymotion'
-Plug 'terryma/vim-expand-region'
+"easymotion
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+" Jump to anywhere you want with minimal keystrokes, with just one key binding.
+nmap s <Plug>(easymotion-overwin-f2)
+" Turn on case-insensitive feature
+let g:EasyMotion_smartcase = 1
+" JK motions: Line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+map <Leader>l <Plug>(easymotion-lineforward)
 
 "Formatting
 Plug 'tpope/vim-surround'
@@ -98,9 +106,6 @@ omap aa <Plug>SidewaysArgumentTextobjA
 xmap aa <Plug>SidewaysArgumentTextobjA
 omap ia <Plug>SidewaysArgumentTextobjI
 xmap ia <Plug>SidewaysArgumentTextobjI
-Plug 'Chiel92/vim-autoformat'
-noremap <leader>= :Autoformat<CR>
-
 
 "Rails
 Plug 'tpope/vim-rails'
@@ -111,15 +116,13 @@ Plug 'tpope/vim-rbenv'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 set updatetime=500 "update gitgutter every 500 milisecond
+noremap <leader>hh :GitGutterToggle<CR>
 
 "Aesthetics
-Plug 'w0ng/vim-hybrid'
-Plug 'arcticicestudio/nord-vim'
-Plug 'srcery-colors/srcery-vim'
 Plug 'itchyny/lightline.vim'
-Plug 'cocopon/iceberg.vim'
-
 set noshowmode "hide the default status line since we have lightline
+Plug 'cocopon/iceberg.vim'
+set termguicolors
 Plug 'junegunn/goyo.vim'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
 Plug 'sheerun/vim-polyglot'
@@ -128,7 +131,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
 Plug 'nelstrom/vim-textobj-rubyblock'
-Plug 'whatyouhide/vim-textobj-erb'
+Plug 'whatyouhide/vim-textobj-erb' 
 
 "UNIX
 Plug 'tpope/vim-eunuch'
@@ -139,6 +142,7 @@ Plug 'tpope/vim-sensible'
 "Other
 Plug 'dbeniamine/cheat.sh-vim'
 Plug 'mhinz/vim-startify'
+Plug 'vim-scripts/restore_view.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -164,23 +168,5 @@ endfunction
 colorscheme iceberg
 
 "open fzf in popover window
-let g:fzf_layout = {  'window': { 'yoffset': 1 ,'width': 0.5, 'height': 0.4 } }
+let g:fzf_layout = {  'window': { 'yoffset': 1 ,'width': 0.9, 'height': 0.4 } }
 
-set termguicolors
-
-"prevent broken syntax highlighting
-autocmd BufEnter * :syntax sync fromstart
-
-"easymotion
-let g:EasyMotion_do_mapping = 0 " Disable default mappings
-
-" Jump to anywhere you want with minimal keystrokes, with just one key binding.
-nmap s <Plug>(easymotion-overwin-f2)
-
-" Turn on case-insensitive feature
-let g:EasyMotion_smartcase = 1
-
-" JK motions: Line motions
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
-map <Leader>l <Plug>(easymotion-lineforward)
