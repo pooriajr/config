@@ -27,3 +27,5 @@ alias gs='git status'
 alias gp='git push'
 
 alias ..='cd ..'
+
+alias be='bundle exec'

@@ -50,6 +50,7 @@ nnoremap <leader>t :terminal<CR>
 inoremap <C-d> <Del>
 vnoremap <leader>c "*y
 nnoremap <C-N><C-N> :set invnumber<CR>
+nnoremap <CR> o<ESC>
 
 
 " Terminal
@@ -106,6 +107,10 @@ omap aa <Plug>SidewaysArgumentTextobjA
 xmap aa <Plug>SidewaysArgumentTextobjA
 omap ia <Plug>SidewaysArgumentTextobjI
 xmap ia <Plug>SidewaysArgumentTextobjI
+nmap <leader>si <Plug>SidewaysArgumentInsertBefore
+nmap <leader>sa <Plug>SidewaysArgumentAppendAfter
+nmap <leader>sI <Plug>SidewaysArgumentInsertFirst
+nmap <leader>sA <Plug>SidewaysArgumentAppendLast
 
 "Rails
 Plug 'tpope/vim-rails'
@@ -126,6 +131,12 @@ set termguicolors
 Plug 'junegunn/goyo.vim'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
 Plug 'sheerun/vim-polyglot'
+Plug 'Konfekt/FastFold'
+Plug 'nathanaelkane/vim-indent-guides'
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#161821   ctermbg=3
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#1E2131 ctermbg=4
 
 "Text objects
 Plug 'kana/vim-textobj-user'
@@ -143,6 +154,9 @@ Plug 'tpope/vim-sensible'
 Plug 'dbeniamine/cheat.sh-vim'
 Plug 'mhinz/vim-startify'
 Plug 'vim-scripts/restore_view.vim'
+Plug 'tpope/vim-liquid'
+Plug 'ackyshake/VimCompletesMe'
+Plug 'rstacruz/vim-xtract'
 
 " Initialize plugin system
 call plug#end()
@@ -150,14 +164,14 @@ call plug#end()
 let g:lightline = {
       \ 'colorscheme': 'iceberg',
       \'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'filename': 'LightlineFilename',
-      \   'gitbranch': 'FugitiveHead'
-      \ }
-      \ }
+        \   'left': [ [ 'mode', 'paste' ],
+        \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+        \ },
+        \ 'component_function': {
+          \   'filename': 'LightlineFilename',
+          \   'gitbranch': 'FugitiveHead'
+          \ }
+          \ }
 
 function! LightlineFilename()
   let cwd = substitute(getcwd(),$HOME,'~','')
@@ -168,5 +182,5 @@ endfunction
 colorscheme iceberg
 
 "open fzf in popover window
-let g:fzf_layout = {  'window': { 'yoffset': 1 ,'width': 0.9, 'height': 0.4 } }
+" let g:fzf_layout = {  'window': { 'yoffset': 1 ,'width': 0.9, 'height': 0.4 } }
 
