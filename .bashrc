@@ -29,3 +29,7 @@ alias gp='git push'
 alias ..='cd ..'
 
 alias be='bundle exec'
+
+alias mvi="/Applications/MacVim.app/Contents/bin/mvim" #open in MacVim
+alias vi="/Applications/MacVim.app/Contents/MacOS/Vim"
+alias ovi="vi" # old vim
