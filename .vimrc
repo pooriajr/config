@@ -34,12 +34,11 @@ nnoremap <C-l> <C-W>l
 " Shortcuts for standard actions
 nnoremap <leader>q <C-W><C-Q>
 nnoremap <leader>w :w<CR>
-nnoremap j gj
-nnoremap k gk
 nnoremap <leader>/ :nohl<CR>
+
 inoremap <C-d> <Del>
+
 vnoremap <leader>c "*y
-nnoremap !! :!!<CR>
 
 " Meta Shortcuts
 nnoremap <leader>vv :tabedit ~/.vimrc<CR>
@@ -63,17 +62,29 @@ endif
 " Specify a directory for plugins
 call plug#begin('~/.vim/plugged')
 
-" Navigation
+" FZF
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tweekmonster/fzf-filemru'
+let g:fzf_history_dir = '~/.local/share/fzf-history'
 nnoremap <leader>r :Rg<CR> 
 nnoremap <leader>f :FilesMru --tiebreak=end<CR>
+nnoremap <leader>l :BLines<CR>
 
 " NerdTree
 Plug 'preservim/nerdtree'
 nnoremap <leader>nn :NERDTreeToggle<CR>
 nnoremap <leader>nf :NERDTreeFind<CR>
+" Start NERDTree when Vim starts with a directory argument.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
+    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
+" Exit Vim if NERDTree is the only window left.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
+    \ quit | endif
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
 " Easymotion
 Plug 'easymotion/vim-easymotion'
@@ -85,12 +96,12 @@ let g:EasyMotion_smartcase = 1
 " JK motions: Line motions
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
-map <Leader>l <Plug>(easymotion-lineforward)
 
 " Formatting
 Plug 'tpope/vim-surround'
 let g:surround_{char2nr('=')} = "<%= \r %>"
 let g:surround_{char2nr('-')} = "<% \r %>"
+let g:surround_{char2nr('%')} = "{% \r %}"
 
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
@@ -99,6 +110,12 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-unimpaired'
 Plug 'mattn/emmet-vim'
 Plug 'AndrewRadev/splitjoin.vim'
+
+Plug 'junegunn/vim-easy-align'
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 Plug 'AndrewRadev/sideways.vim'
 nnoremap H :SidewaysLeft<cr>
@@ -114,7 +131,6 @@ nmap <leader>sA <Plug>SidewaysArgumentAppendLast
 
 " Rails
 Plug 'tpope/vim-rails'
-Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-rbenv'
 
 " Git
@@ -125,9 +141,13 @@ Plug 'airblade/vim-gitgutter'
 set updatetime=500 " update gitgutter every 500 milisecond
 noremap <leader>hh :GitGutterToggle<CR>
 
+Plug 'junegunn/gv.vim'
+
 " Aesthetics
 set termguicolors
 Plug 'cocopon/iceberg.vim'
+Plug 'machakann/vim-highlightedyank'
+Plug 'psliwka/vim-smoothie'
 
 Plug 'Konfekt/FastFold'
 Plug 'nathanaelkane/vim-indent-guides'
@@ -160,7 +180,7 @@ endfunction
 
 " Language Support
 Plug 'sheerun/vim-polyglot'
-Plug 'tpope/vim-liquid'
+" Plug 'tpope/vim-liquid'
 Plug 'evanleck/vim-svelte', {'branch': 'main'}
 
 " Text objects
@@ -177,42 +197,67 @@ Plug 'michaeljsmith/vim-indent-object'
 " UNIX
 Plug 'tpope/vim-eunuch'
 
-" GOYO
+" Prose, using Goyo as 'Prose Mode'
 Plug 'junegunn/goyo.vim'
-nnoremap <leader>G :Goyo<CR>
+Plug 'preservim/vim-wordy'
 
-function! s:goyo_enter()
-  let b:quitting = 0
-  let b:quitting_bang = 0
-  autocmd QuitPre <buffer> let b:quitting = 1
-  cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
-  set linebreak
+function! StartProse()
+  setlocal linebreak
+  setlocal wrap
+  nnoremap <buffer> j gj
+  nnoremap <buffer> k gk
+  nnoremap <buffer> $ g$
+  nnoremap <buffer> 0 g0
+  inoremap <buffer> . .<c-g>u
+  inoremap <buffer> ! !<c-g>u
+  inoremap <buffer> ? ?<c-g>u
+  inoremap <buffer> , ,<c-g>u
+  inoremap <buffer> ; ;<c-g>u
+  inoremap <buffer> : :<c-g>u
 endfunction
 
-function! s:goyo_leave()
-  " Quit Vim if this is the only remaining buffer
-  set nolinebreak
-  if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 
-    if b:quitting_bang
-      qa!
-    else
-      qa
-    endif
-  endif
+function! StopProse()
+  setlocal nolinebreak
+  setlocal nowrap
+  unmap <buffer> j
+  unmap <buffer> k
+  unmap <buffer> $
+  unmap <buffer> 0
+  iunmap <buffer> .
+  iunmap <buffer> !
+  iunmap <buffer> ?
+  iunmap <buffer> ,
+  iunmap <buffer> ;
+  iunmap <buffer> :
 endfunction
 
-autocmd! User GoyoEnter call <SID>goyo_enter()
-autocmd! User GoyoLeave call <SID>goyo_leave()
+autocmd! User GoyoEnter nested call StartProse()
+autocmd! User GoyoLeave nested call StopProse()
+nnoremap <leader>p :Goyo<CR>
 
 " Settings
 Plug 'tpope/vim-sensible'
 
 " Other
-Plug 'mhinz/vim-startify'
 Plug 'vim-scripts/restore_view.vim'
-Plug 'ackyshake/VimCompletesMe'
 Plug 'rstacruz/vim-xtract'
-Plug 'psliwka/vim-smoothie'
+Plug 'vim-scripts/ReplaceWithRegister'
+Plug 'tommcdo/vim-exchange'
+Plug 'mbbill/undotree'
+nnoremap <leader>u :UndotreeToggle<CR>
+Plug 'szw/vim-maximizer'
+nnoremap <leader>o :MaximizerToggle<CR>
+
+" Autocompletion
+Plug 'jiangmiao/auto-pairs'
+Plug 'https://github.com/lifepillar/vim-mucomplete'
+set completeopt+=menuone
+set completeopt+=noselect
+set shortmess+=c   " Shut off completion messages
+set belloff+=ctrlg " If Vim beeps during completion
+let g:mucomplete#enable_auto_at_startup = 1
+" Pressing down arrow will try to chain completions like ctr-x ctr-p
+imap <expr> <down> mucomplete#extend_fwd("\<down>")
 
 " Initialize plugin system
 call plug#end()
