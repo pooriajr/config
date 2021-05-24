@@ -70,6 +70,7 @@ let g:fzf_history_dir = '~/.local/share/fzf-history'
 nnoremap <leader>r :Rg<CR> 
 nnoremap <leader>f :FilesMru --tiebreak=end<CR>
 nnoremap <leader>l :BLines<CR>
+nnoremap <leader>: :History:<CR>
 
 " NerdTree
 Plug 'preservim/nerdtree'
@@ -90,7 +91,7 @@ autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_
 Plug 'easymotion/vim-easymotion'
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
 " Jump to anywhere you want with minimal keystrokes, with just one key binding.
-nmap s <Plug>(easymotion-overwin-f2)
+nmap s <Plug>(easymotion-overwin-f)
 " Turn on case-insensitive feature
 let g:EasyMotion_smartcase = 1
 " JK motions: Line motions
@@ -135,7 +136,16 @@ Plug 'tpope/vim-rbenv'
 
 " Git
 Plug 'tpope/vim-fugitive'
-nnoremap <leader>g :Git 
+nnoremap <leader>gg :ToggleGStatus<CR>
+function! ToggleGStatus()
+    if buflisted(bufname('.git/index'))
+        bd .git/index
+    else
+        :Git
+    endif
+endfunction
+command ToggleGStatus :call ToggleGStatus()
+nnoremap <leader>gca :Gwrite <bar> :Git commit<CR>
 
 Plug 'airblade/vim-gitgutter'
 set updatetime=500 " update gitgutter every 500 milisecond
@@ -149,7 +159,7 @@ Plug 'cocopon/iceberg.vim'
 Plug 'machakann/vim-highlightedyank'
 Plug 'psliwka/vim-smoothie'
 
-Plug 'Konfekt/FastFold'
+klug 'Konfekt/FastFold'
 Plug 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
@@ -206,6 +216,8 @@ function! StartProse()
   setlocal wrap
   nnoremap <buffer> j gj
   nnoremap <buffer> k gk
+  vnoremap <buffer> j gj
+  vnoremap <buffer> k gk
   nnoremap <buffer> $ g$
   nnoremap <buffer> 0 g0
   inoremap <buffer> . .<c-g>u
@@ -267,4 +279,4 @@ colorscheme iceberg
 let macvim_skip_colorscheme = 1
 set background=dark
 
-" That's all, folks!
+" ihat's all, folks!
