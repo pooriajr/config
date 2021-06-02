@@ -6,22 +6,16 @@ Convention Over Configuration.
 
 ## Core Apps
 - iTerm2
-- Firefox Developer
+- MacVim
 - 1Password 
-- Truple (Screenshot Accountability)
 - Magnet (Window Manager)
-- Monosnap (Better Screenshots)
+- CleanShotPro (Better Screenshots)
 - Alfred Powerpack (App switcher + Clipboard History)
-- Cold Turkey (Limit Computer Usage)
-- VS Code (For IDE features)
 - 2Do (Task Management)
 - Horo (Timer for timeboxing)
 
 ## More Apps
-- Airmail (Multiple email accounts)
 - Chrome (Cross Browser Testing)
-- Figma (Web Design)
-- GIMP (Photo editing)
 
 ## MacOS Configuration
 - No dark mode, just turn brightness down, nerd.

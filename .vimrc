@@ -9,6 +9,8 @@ set shiftwidth=2
 set expandtab
 set smartindent
 set shiftround 
+set nomodeline
+
 
 set undofile
 set undodir=$HOME/.vim/undo
@@ -34,7 +36,7 @@ nnoremap <C-l> <C-W>l
 " Shortcuts for standard actions
 nnoremap <leader>q <C-W><C-Q>
 nnoremap <leader>w :w<CR>
-nnoremap <leader>/ :nohl<CR>
+nnoremap <silent> <leader><Esc> :nohl<CR>
 
 inoremap <C-d> <Del>
 
@@ -66,16 +68,29 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tweekmonster/fzf-filemru'
+Plug 'jesseleite/vim-agriculture'
+
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 nnoremap <leader>r :Rg<CR> 
-nnoremap <leader>f :FilesMru --tiebreak=end<CR>
-nnoremap <leader>l :BLines<CR>
-nnoremap <leader>: :History:<CR>
+" nnoremap <leader>f :FilesMru --tiebreak=end<CR>
+nmap <Leader>f :GFiles<CR>
+nmap <Leader>F :Files<CR>
+nmap <Leader>b :Buffers<CR>
+nmap <Leader>h :History<CR>
+nmap <Leader>l :BLines<CR>
+nmap <Leader>L :Lines<CR>
+nmap <Leader>' :Marks<CR>
+nmap <Leader>/ :Rg<Space>
+nmap <Leader>H :Helptags!<CR>
+nmap <Leader>: :History:<CR>
+nmap <Leader>M :Maps<CR>
+nmap <Leader>s :Filetypes<CR>
 
 " NerdTree
 Plug 'preservim/nerdtree'
 nnoremap <leader>nn :NERDTreeToggle<CR>
 nnoremap <leader>nf :NERDTreeFind<CR>
+let NERDTreeShowHidden=1
 " Start NERDTree when Vim starts with a directory argument.
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
@@ -111,6 +126,7 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-unimpaired'
 Plug 'mattn/emmet-vim'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'wellle/targets.vim'
 
 Plug 'junegunn/vim-easy-align'
 " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -145,7 +161,8 @@ function! ToggleGStatus()
     endif
 endfunction
 command ToggleGStatus :call ToggleGStatus()
-nnoremap <leader>gca :Gwrite <bar> :Git commit<CR>
+nnoremap <leader>gca :Git add . <bar> :Git commit<CR>
+nnoremap <leader>gp :Git push<CR>
 
 Plug 'airblade/vim-gitgutter'
 set updatetime=500 " update gitgutter every 500 milisecond
@@ -159,7 +176,7 @@ Plug 'cocopon/iceberg.vim'
 Plug 'machakann/vim-highlightedyank'
 Plug 'psliwka/vim-smoothie'
 
-klug 'Konfekt/FastFold'
+Plug 'Konfekt/FastFold'
 Plug 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
@@ -214,6 +231,7 @@ Plug 'preservim/vim-wordy'
 function! StartProse()
   setlocal linebreak
   setlocal wrap
+  setlocal spell
   nnoremap <buffer> j gj
   nnoremap <buffer> k gk
   vnoremap <buffer> j gj
@@ -279,4 +297,4 @@ colorscheme iceberg
 let macvim_skip_colorscheme = 1
 set background=dark
 
-" ihat's all, folks!
+" That's all, folks!
