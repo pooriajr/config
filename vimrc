@@ -12,7 +12,6 @@ set smartindent
 set shiftround 
 set nomodeline
 set undofile
-set undodir=$HOME/.vim/undo
 syntax on
 
 " Leader
@@ -38,7 +37,7 @@ inoremap <C-d> <Del>
 vnoremap <M-c> "+y
 
 " Meta
-nnoremap <leader>vv :tabedit ~/r/config/.vimrc<CR>
+nnoremap <leader>vv :tabedit ~/r/config/vimrc<CR>
 nnoremap <leader>vr :source $MYVIMRC<CR> 
 nnoremap <leader>vp :PlugInstall<CR>
 
@@ -70,16 +69,13 @@ Plug 'preservim/nerdtree'
 nnoremap <leader>nn :NERDTreeToggle<CR>
 nnoremap <leader>nf :NERDTreeFind<CR>
 
-" Easymotion
+
+" Motion
 Plug 'easymotion/vim-easymotion'
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
-" Jump to anywhere you want with minimal keystrokes, with just one key binding.
-nmap s <Plug>(easymotion-overwin-f)
-" Turn on case-insensitive feature
-let g:EasyMotion_smartcase = 1
-" JK motions: Line motions
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
+Plug 'ggandor/lightspeed.nvim'
 
 " Formatting
 Plug 'tpope/vim-surround'
@@ -150,6 +146,7 @@ set termguicolors
 Plug 'arcticicestudio/nord-vim'
 Plug 'machakann/vim-highlightedyank'
 Plug 'psliwka/vim-smoothie'
+
 " Plug 'Konfekt/FastFold'
 
 " Lightline
@@ -239,6 +236,10 @@ nnoremap <leader>u :UndotreeToggle<CR>
 Plug 'szw/vim-maximizer'
 nnoremap <leader>o :MaximizerToggle<CR>
 Plug 'christoomey/vim-tmux-navigator'
+
+" Buffer Bar
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'romgrk/barbar.nvim'
 
 " Autocompletion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
