@@ -1,13 +1,21 @@
 # Posix stuff that isn't zsh specific
 source $HOME/.profile
 
+export EDITOR=nvim
+
 ENABLE_CORRECTION="true"
+setopt auto_cd
 
 export BAT_THEME="Nord"
 
 # Prompt
 autoload -U promptinit; promptinit
 prompt pure
+
+# Enable Ctrl-e to edit command line with $EDITOR
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^e' edit-command-line
 
 # Autojump functionality
 eval "$(zoxide init zsh)"
@@ -19,7 +27,7 @@ zplug "plugins/git",   from:oh-my-zsh
 
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-autosuggestions"
-zplug "jeffreytse/zsh-vi-mode"
+
 
   # Install plugins if there are plugins that have not been installed
   if ! zplug check --verbose; then
