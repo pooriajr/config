@@ -122,22 +122,25 @@ function! ToggleGStatus()
         :Git
     endif
 endfunction
+nnoremap <leader>gp :Git push<CR>
+nnoremap <leader>gs :Git status<CR>
+nnoremap <leader>gl :GV<CR>
 
 Plug 'mhinz/vim-signify'
 set updatetime=100
-nnoremap <leader>gd :SignifyDiff<cr>
-nnoremap <leader>gp :SignifyHunkDiff<cr>
-nnoremap <leader>gu :SignifyHunkUndo<cr>
+nnoremap <leader>hd :SignifyDiff<cr>
+nnoremap <leader>hp :SignifyHunkDiff<cr>
+nnoremap <leader>hu :SignifyHunkUndo<cr>
 
 " hunk jumping
-nmap <leader>gj <plug>(signify-next-hunk)
-nmap <leader>gk <plug>(signify-prev-hunk)
+nmap <leader>hj <plug>(signify-next-hunk)
+nmap <leader>hk <plug>(signify-prev-hunk)
 
 " hunk text object
-omap ic <plug>(signify-motion-inner-pending)
-xmap ic <plug>(signify-motion-inner-visual)
-omap ac <plug>(signify-motion-outer-pending)
-xmap ac <plug>(signify-motion-outer-visual)
+omap ih <plug>(signify-motion-inner-pending)
+xmap ih <plug>(signify-motion-inner-visual)
+omap ah <plug>(signify-motion-outer-pending)
+xmap ah <plug>(signify-motion-outer-visual)
 
 " :GV to open commit browser
 Plug 'junegunn/gv.vim'
