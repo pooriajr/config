@@ -8,6 +8,9 @@ setopt auto_cd
 
 export BAT_THEME="Nord"
 
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init - zsh)"
+
 # Prompt
 autoload -U promptinit; promptinit
 prompt pure
@@ -27,7 +30,6 @@ zplug "plugins/git",   from:oh-my-zsh
 
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-autosuggestions"
-
 
   # Install plugins if there are plugins that have not been installed
   if ! zplug check --verbose; then
