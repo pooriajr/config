@@ -114,8 +114,8 @@ Plug 'tpope/vim-rbenv'
 
 " Git
 Plug 'tpope/vim-fugitive'
-nnoremap <leader>gg :call ToggleGStatus()<CR>
-function! ToggleGStatus()
+nnoremap <leader>gg :call ToggleFugitiveWindow()<CR>
+function! ToggleFugitiveWindow()
     if buflisted(bufname('.git/index'))
         bd .git/index
     else
