@@ -243,6 +243,7 @@ Plug 'romgrk/barbar.nvim'
 
 " Autocompletion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+nmap <silent> gd <Plug>(coc-definition)
 
 " Open help pages in a vertical split
 augroup vertical_help
