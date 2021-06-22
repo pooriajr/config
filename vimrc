@@ -48,6 +48,15 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+" Open help pages in a vertical split
+augroup vertical_help
+  autocmd!
+  autocmd FileType help
+        \ setlocal bufhidden=unload |
+        \ wincmd L |
+        \ vertical resize 79
+augroup END
+
 " Specify a directory for plugins
 call plug#begin('~/.vim/plugged')
 
@@ -232,9 +241,9 @@ nnoremap <leader>p :Goyo<CR>
 Plug 'rstacruz/vim-xtract'
 Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'mbbill/undotree'
-nnoremap <leader>u :UndotreeToggle<CR>
+  nnoremap <leader>u :UndotreeToggle<CR>
 Plug 'szw/vim-maximizer'
-nnoremap <leader>o :MaximizerToggle<CR>
+  nnoremap <leader>o :MaximizerToggle<CR>
 Plug 'christoomey/vim-tmux-navigator'
 
 " Buffer Bar
@@ -243,16 +252,20 @@ Plug 'romgrk/barbar.nvim'
 
 " Autocompletion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-nmap <silent> gd <Plug>(coc-definition)
+  " use <tab> for trigger completion and navigate to the next complete item
+  function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+  endfunction
 
-" Open help pages in a vertical split
-augroup vertical_help
-  autocmd!
-  autocmd FileType help
-        \ setlocal bufhidden=unload |
-        \ wincmd L |
-        \ vertical resize 79
-augroup END
+  inoremap <silent><expr> <Tab>
+        \ pumvisible() ? "\<C-n>" :
+        \ <SID>check_back_space() ? "\<Tab>" :
+        \ coc#refresh()
+
+  " gd to go to definition definition
+  nmap <silent> gd <Plug>(coc-definition)
+
 
 " Initialize plugin system
 call plug#end()
