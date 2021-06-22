@@ -44,3 +44,8 @@ zplug "zsh-users/zsh-autosuggestions"
 
 # fix fzf binding which get overwritten by zsh-vi-mode
 zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
+
+# make control-D exit as in bash
+exit_zsh() { exit }
+zle -N exit_zsh
+bindkey '^D' exit_zsh
