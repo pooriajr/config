@@ -15,10 +15,10 @@ eval "$(rbenv init - zsh)"
 autoload -U promptinit; promptinit
 prompt pure
 
-# Enable Ctrl-e to edit command line with $EDITOR
+# Enable Ctrl-v to edit command line with $EDITOR (vim)
 autoload -U edit-command-line
 zle -N edit-command-line
-bindkey '^e' edit-command-line
+bindkey '^v' edit-command-line
 
 # Autojump functionality
 eval "$(zoxide init zsh)"
@@ -30,6 +30,8 @@ zplug "plugins/git",   from:oh-my-zsh
 
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-autosuggestions"
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+zplug "jeffreytse/zsh-vi-mode"
 
   # Install plugins if there are plugins that have not been installed
   if ! zplug check --verbose; then
