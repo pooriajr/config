@@ -37,7 +37,7 @@ inoremap <C-d> <Del>
 vnoremap <M-c> "+y
 
 " Meta
-nnoremap <leader>vv :tabedit ~/r/config/vimrc<CR>
+nnoremap <leader>vv :e ~/r/config/vimrc<CR>
 nnoremap <leader>vr :source $MYVIMRC<CR> 
 nnoremap <leader>vp :PlugInstall<CR>
 
@@ -73,7 +73,7 @@ nmap <Leader>/ :Rg<Space>
 nmap <Leader>? :Helptags!<CR>
 nmap <Leader>: :History:<CR>
 
-" NerdTree
+" File Explorer
 Plug 'preservim/nerdtree'
 nnoremap <leader>nn :NERDTreeToggle<CR>
 nnoremap <leader>nf :NERDTreeFind<CR>
@@ -154,13 +154,15 @@ set termguicolors
 Plug 'arcticicestudio/nord-vim'
 Plug 'machakann/vim-highlightedyank'
 Plug 'psliwka/vim-smoothie'
-
-" Plug 'Konfekt/FastFold'
+Plug 'ryanoasis/vim-devicons'
+" after a re-source, fix syntax matching issues (concealing brackets):
+" if exists('g:loaded_webdevicons')
+"     call webdevicons#refresh()
+" endif
 
 " Lightline
 Plug 'itchyny/lightline.vim'
-" hide the default status line since we have lightline
-set noshowmode 
+set noshowmode " hide the default status line since we have lightline
 let g:lightline = {
       \ 'colorscheme': 'nord',
       \'active': {
@@ -241,12 +243,17 @@ Plug 'mbbill/undotree'
 Plug 'szw/vim-maximizer'
   nnoremap <leader>o :MaximizerToggle<CR>
 Plug 'christoomey/vim-tmux-navigator'
-
-" Buffer Bar
+Plug 'folke/which-key.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'romgrk/barbar.nvim'
+nnoremap <Tab> :BufferNext<CR>
+nnoremap <S-Tab> :BufferPrevious<CR>
+nnoremap <c-s> :BufferPick<CR>
+nnoremap X :BufferClose<CR>
 
-" Autocompletion
+Plug 'mhinz/vim-startify'
+
+" CoC
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
   " use <tab> for trigger completion and navigate to the next complete item
   function! s:check_back_space() abort
@@ -261,12 +268,18 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
   " gd to go to definition definition
   nmap <silent> gd <Plug>(coc-definition)
-
+  " open coc-explorer (plugin)
+  nnoremap <leader>e :CocCommand explorer<CR>
+  let g:coc_explorer_global_presets = { 'explorer': {'icon': { 'enableNerdFont': 'true', 'enableVimDevicons': 'true' }}}
 
 " Initialize plugin system
 call plug#end()
 
 " this has to be down here or it doesnt work with vim-plug 🤷‍♂️
 colorscheme nord
+
+lua << EOF
+  require("which-key").setup() 
+EOF
 
 " That's all, folks!
