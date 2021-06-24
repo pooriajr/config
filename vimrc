@@ -78,7 +78,6 @@ Plug 'preservim/nerdtree'
 nnoremap <leader>nn :NERDTreeToggle<CR>
 nnoremap <leader>nf :NERDTreeFind<CR>
 
-
 " Motion
 Plug 'easymotion/vim-easymotion'
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
@@ -189,13 +188,10 @@ Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
 " r ruby block
 Plug 'nelstrom/vim-textobj-rubyblock'
-" e erb tag
+" E erb tag
 Plug 'whatyouhide/vim-textobj-erb' 
 " i indent level
 Plug 'michaeljsmith/vim-indent-object'
-
-" UNIX Shell Commands
-Plug 'tpope/vim-eunuch'
 
 " Prose, using Goyo as 'Prose Mode'
 Plug 'junegunn/goyo.vim'
