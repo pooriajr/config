@@ -191,8 +191,12 @@ set noshowmode " hide the default status line since we have lightline
 let g:lightline = {
   \ 'colorscheme': 'nord',
   \'active': {
-  \   'left': [ [ 'yy', 'mode', 'paste' ],
+  \   'left': [ [ 'yy', 'mode', 'paste' ], 
   \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+  \ },
+  \ 'inactive': {
+  \   'left': [ [ 'filename'] , ['modified' ] ],
+  \   'right': []
   \ },
   \ 'tabline': {
   \   'left': [ ['buffers'] ],
