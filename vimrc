@@ -160,7 +160,7 @@ Plug 'arcticicestudio/nord-vim'
 " Nord Overrides
   augroup nord-theme-overrides
     autocmd!
-    autocmd ColorScheme nord highlight Folded guibg=#353c4a guifg=#556076
+    autocmd ColorScheme nord highlight Folded guibg=#313745 guifg=#556076
   augroup END
 
 Plug 'machakann/vim-highlightedyank'
@@ -310,7 +310,7 @@ Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'mbbill/undotree'
   nnoremap <leader>u :UndotreeToggle<CR>
 Plug 'szw/vim-maximizer'
-  nnoremap <leader>o :MaximizerToggle<CR>
+  nnoremap <leader>z :MaximizerToggle<CR>
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'folke/which-key.nvim'
 Plug 'chaoren/vim-wordmotion'
@@ -335,6 +335,11 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
   nmap <silent> gd <Plug>(coc-definition)
   " open coc-explorer (plugin)
   nnoremap <silent> <leader>e :CocCommand explorer<CR>
+
+" LSP Outline via Vista
+  Plug 'liuchengxu/vista.vim'
+  let g:vista_default_executive = 'coc'
+  nmap <leader>o :Vista!!<CR>
 
 " Initialize plugin system
 call plug#end()

@@ -5,14 +5,19 @@ alias gs='git status'
 alias gp='git push'
 alias gl='git log'
 
-alias vi="nvim"
+alias t='tmux'
+alias ta='tmux a -t'
+alias tls='tmux ls'
+alias tn='tmux new -t'
 
-alias mux="tmuxinator"
+alias vi='nvim'
 
-alias ls="exa"
-alias lsa="exa -a"
+alias mux='tmuxinator'
 
-alias cat="bat"
+alias ls='exa'
+alias lsa='exa -a'
+
+alias cat='bat'
 
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export FZF_DEFAULT_COMMAND='rg --files'
