@@ -14,6 +14,8 @@ alias vi='nvim'
 
 alias mux='tmuxinator'
 
+alias be='bundle exec'
+
 alias ls='exa'
 alias lsa='exa -a'
 

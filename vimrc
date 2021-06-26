@@ -27,7 +27,7 @@ let mapleader = " "
   nnoremap <C-l> <C-W>l
 
 " Shortcuts for standard actions
-  nnoremap <leader>q <C-W><C-Q>
+  nnoremap <leader>Q <C-W><C-Q>
   nnoremap <leader>w :w<CR>
   nnoremap <silent> <leader><Esc> :nohl<CR>
   " Copy highlighted text to clipboard https://github.com/neovim/neovim/issues/5052#issuecomment-232083842
@@ -98,6 +98,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'mattn/emmet-vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'AndrewRadev/tagalong.vim'
 
 Plug 'AndrewRadev/sideways.vim'
   nnoremap H :SidewaysLeft<cr>
@@ -256,6 +257,8 @@ endfunction
   "tab to switch buffer
   nnoremap <Tab> :bnext<CR>
   nnoremap <S-Tab> :bprevious<CR>
+  Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
+  nmap <Leader>q :Sayonara<CR>
 
 " Text objects
   Plug 'kana/vim-textobj-user'
