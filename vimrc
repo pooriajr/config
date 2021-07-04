@@ -156,6 +156,9 @@ Plug 'mhinz/vim-signify'
 
 " Aesthetics
 set termguicolors
+Plug 'machakann/vim-highlightedyank'
+Plug 'psliwka/vim-smoothie'
+Plug 'ryanoasis/vim-devicons'
 Plug 'arcticicestudio/nord-vim'
 
 " Nord Overrides
@@ -163,10 +166,6 @@ Plug 'arcticicestudio/nord-vim'
     autocmd!
     autocmd ColorScheme nord highlight Folded guibg=#313745 guifg=#556076
   augroup END
-
-Plug 'machakann/vim-highlightedyank'
-Plug 'psliwka/vim-smoothie'
-Plug 'ryanoasis/vim-devicons'
 
 " Custom Fold Text
   function! MyFoldText()
