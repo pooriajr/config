@@ -168,12 +168,13 @@ Plug 'arcticicestudio/nord-vim'
   augroup END
 
 " Custom Fold Text
-  function! MyFoldText()
+  function! CustomFold()
       let line = getline(v:foldstart)
       let foldedlinecount = v:foldend - v:foldstart + 1
-      return '  '. foldedlinecount . line
+      return printf('  %-3d%s', foldedlinecount, line)
   endfunction
-  set foldtext=MyFoldText()
+
+  set foldtext=CustomFold()
   set fillchars=fold:\  
 
 " Lightline + Bufferline
