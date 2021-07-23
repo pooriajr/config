@@ -19,11 +19,6 @@ export NVM_DIR="$HOME/.nvm"
 autoload -U promptinit; promptinit
 prompt pure
 
-# Enable Ctrl-v to edit command line with $EDITOR (vim)
-autoload -U edit-command-line
-zle -N edit-command-line
-bindkey '^v' edit-command-line
-
 # Autojump functionality
 eval "$(zoxide init zsh)"
 
