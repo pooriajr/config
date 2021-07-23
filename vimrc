@@ -338,6 +338,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'liuchengxu/vista.vim'
   let g:vista_default_executive = 'coc'
   nmap <leader>o :Vista!!<CR>
+  " c comment
+  Plug 'glts/vim-textobj-comment'
 
 " Initialize plugin system
 call plug#end()
