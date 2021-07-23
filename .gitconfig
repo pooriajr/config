@@ -8,8 +8,8 @@
 	editor = vim
 	excludesfile = ~/.gitignore_global
 [user]
-	name = Pooria R
-	email = pjrashidi@gmail.com
+	name = Pooria
+	email = pooria@hey.com
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
