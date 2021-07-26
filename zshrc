@@ -11,40 +11,23 @@ export BAT_THEME="Nord"
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init - zsh)"
 
-# NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+# NVM (all this fancy stuff is to make it load faster)
+declare -a NODE_GLOBALS=(`find ~/.nvm/versions/node -maxdepth 3 -type l -wholename '*/bin/*' | xargs -n1 basename | sort | uniq`)
 
-# Prompt
-autoload -U promptinit; promptinit
-prompt pure
+NODE_GLOBALS+=("node")
+NODE_GLOBALS+=("nvm")
+
+load_nvm () {
+    export NVM_DIR=~/.nvm
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+}
+
+for cmd in "${NODE_GLOBALS[@]}"; do
+    eval "${cmd}(){ unset -f ${NODE_GLOBALS}; load_nvm; ${cmd} \$@ }"
+done
 
 # Autojump functionality
 eval "$(zoxide init zsh)"
-
-# Plugins handled by zplug
-source ~/.zplug/init.zsh
-
-zplug "plugins/git",   from:oh-my-zsh
-
-zplug "zsh-users/zsh-syntax-highlighting"
-zplug "zsh-users/zsh-autosuggestions"
-ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-zplug "jeffreytse/zsh-vi-mode"
-
-  # Install plugins if there are plugins that have not been installed
-  if ! zplug check --verbose; then
-      printf "Install? [y/N]: "
-      if read -q; then
-          echo; zplug install
-      fi
-  fi
-
-  # Then, source plugins and add commands to $PATH
-  zplug load
-
-# fix fzf binding which get overwritten by zsh-vi-mode
-zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
 
 # make control-D exit as in bash
 exit_zsh() { exit }

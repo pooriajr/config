@@ -199,6 +199,9 @@ endfunction
   " c comment
   Plug 'glts/vim-textobj-comment'
 
+" For using vim in browser
+Plug 'subnut/nvim-ghost.nvim', {'do': ':call nvim_ghost#installer#install()'}
+
 " Initialize plugin system
 call plug#end()
 
