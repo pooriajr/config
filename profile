@@ -4,6 +4,7 @@ alias gco='git checkout'
 alias gs='git status'
 alias gp='git push'
 alias gl='git log'
+alias gc='git commit'
 
 alias vi='nvim'
 
