@@ -20,3 +20,5 @@ alias heroku_pg_gui 'heroku config:get DATABASE_URL | xargs pgweb --url'
 
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 export FZF_DEFAULT_COMMAND='rg --files'
+
+export EDITOR="nvim"

@@ -40,7 +40,7 @@ endfunc
 nnoremap <silent> <leader><BS> :call Delete_buffers()<CR>:echo "Non-windowed buffers are deleted"<CR>
 
 " Meta
-  nnoremap <leader>vv :e ~/r/config/vimrc<CR>
+  nnoremap <leader>vv :e ~/Repos/config/vimrc<CR>
   nnoremap <leader>vr :source $MYVIMRC<CR> 
   nnoremap <leader>vp :PlugInstall<CR>
 
@@ -100,20 +100,22 @@ Plug 'junegunn/vim-easy-align'
 " Rails
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-rbenv'
+Plug 'thoughtbot/vim-rspec'
 
 " Git
 Plug 'tpope/vim-fugitive'
+  nnoremap <leader>gg :G<cr>
 Plug 'mhinz/vim-signify'
   set updatetime=100
   nnoremap <leader>hd :SignifyDiff<cr>
   nnoremap <leader>hp :SignifyHunkDiff<cr>
   nnoremap <leader>hu :SignifyHunkUndo<cr>
+Plug 'rhysd/git-messenger.vim'
 
 " Aesthetics
 set termguicolors
 Plug 'machakann/vim-highlightedyank'
 Plug 'psliwka/vim-smoothie'
-Plug 'ryanoasis/vim-devicons'
 Plug 'arcticicestudio/nord-vim'
 
 " Nord Overrides
@@ -176,6 +178,7 @@ endfunction
 " Use release branch (recommend)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 nnoremap <Leader>e :CocCommand explorer<CR>
+Plug 'dense-analysis/ale'
 
 Plug 'chrisbra/Colorizer'
 
