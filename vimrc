@@ -44,6 +44,9 @@ nnoremap <silent> <leader><BS> :call Delete_buffers()<CR>:echo "Non-windowed buf
   nnoremap <leader>vr :source $MYVIMRC<CR> 
   nnoremap <leader>vp :PlugInstall<CR>
 
+" Abbreviations
+iabbrev bpry require 'pry'; binding.pry;
+
 " Specify a directory for plugins
 call plug#begin('~/.vim/plugged')
 
@@ -76,7 +79,8 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-unimpaired'
 Plug 'mattn/emmet-vim'
-Plug 'jiangmiao/auto-pairs'
+Plug 'LunarWatcher/auto-pairs', {'branch': 'develop-4.0.0'}
+
 
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'AndrewRadev/sideways.vim'
@@ -104,7 +108,7 @@ Plug 'thoughtbot/vim-rspec'
 
 " Git
 Plug 'tpope/vim-fugitive'
-  nnoremap <leader>gg :G<cr>
+  nnoremap <leader>g :G<cr>
 Plug 'mhinz/vim-signify'
   set updatetime=100
   nnoremap <leader>hd :SignifyDiff<cr>
@@ -128,7 +132,7 @@ Plug 'arcticicestudio/nord-vim'
   function! CustomFold()
       let line = getline(v:foldstart)
       let foldedlinecount = v:foldend - v:foldstart + 1
-      return printf('  %-3d%s', foldedlinecount, line)
+      return printf(' = %-3d%s', foldedlinecount, line)
   endfunction
 
   set foldtext=CustomFold()
@@ -168,6 +172,9 @@ endfunction
   Plug 'kana/vim-textobj-entire'
   " r ruby block
   Plug 'nelstrom/vim-textobj-rubyblock'
+  " f function
+  Plug 'kana/vim-textobj-function'
+  Plug 'haya14busa/vim-textobj-function-syntax'
   " E erb tag
   Plug 'whatyouhide/vim-textobj-erb' 
   " i indent level
@@ -178,9 +185,18 @@ endfunction
 " Use release branch (recommend)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 nnoremap <Leader>e :CocCommand explorer<CR>
-Plug 'dense-analysis/ale'
 
 Plug 'chrisbra/Colorizer'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'wellle/targets.vim'
+Plug 'chaoren/vim-wordmotion'
+Plug 'itmammoth/run-rspec.vim'
+map <Leader>ra :RunSpec<CR>
+map <Leader>rl :RunSpecLine<CR>
+map <Leader>rr :RunSpecLastRun<CR>
+" Plug 'github/copilot.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'bronson/vim-visual-star-search'
 
 " Initialize plugin system
 call plug#end()
