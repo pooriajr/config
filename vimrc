@@ -79,8 +79,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-unimpaired'
 Plug 'mattn/emmet-vim'
-Plug 'LunarWatcher/auto-pairs', {'branch': 'develop-4.0.0'}
-
+Plug 'LunarWatcher/auto-pairs', {'branch': 'develop'}
 
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'AndrewRadev/sideways.vim'
@@ -203,5 +202,20 @@ call plug#end()
 
 " this has to be down here or it doesnt work with vim-plug 🤷‍♂️
 colorscheme nord
+
+nnoremap <Leader>c :call ConcealCSSClasses()<cr>
+function! ConcealCSSClasses() abort
+  let id = get(w:, 'concealed_id', 0)
+  if id
+    call matchdelete(id)
+    unlet w:concealed_id
+    set conceallevel=0
+  else
+    let w:concealed_id =
+      \ matchadd('conceal', "\\v%(class\\s*[:,=]\\s*)@<=([\x22\x27]).{-}\\1",
+      \ 777, -1, #{conceal: '🍃'})
+    set conceallevel=2
+  endif
+endfunction
 
 " That's all, folks!
