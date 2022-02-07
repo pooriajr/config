@@ -196,6 +196,8 @@ map <Leader>rr :RunSpecLastRun<CR>
 " Plug 'github/copilot.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'bronson/vim-visual-star-search'
+Plug 'iamcco/coc-tailwindcss',  {'do': 'yarn install --frozen-lockfile && yarn run build'}
+" disable sortOnSave https://github.com/iamcco/coc-tailwindcss/issues/65
 
 " Initialize plugin system
 call plug#end()
@@ -213,9 +215,24 @@ function! ConcealCSSClasses() abort
   else
     let w:concealed_id =
       \ matchadd('conceal', "\\v%(class\\s*[:,=]\\s*)@<=([\x22\x27]).{-}\\1",
-      \ 777, -1, #{conceal: '🍃'})
+      \ 777, -1, #{conceal: '…'})
     set conceallevel=2
   endif
 endfunction
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" MULTIPURPOSE TAB KEY
+" Indent if we're at the beginning of a line. Else, do completion.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! InsertTabWrapper()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<tab>"
+    else
+        return "\<c-n>"
+    endif
+endfunction
+inoremap <expr> <tab> InsertTabWrapper()
+inoremap <s-tab> <c-p>
 
 " That's all, folks!
