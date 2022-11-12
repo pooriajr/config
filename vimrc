@@ -16,6 +16,7 @@
   set foldlevel=99
   set number
   set nowrap
+  set noemoji
 
 " Leader
 let mapleader = " "
@@ -30,15 +31,6 @@ vnoremap <M-c> "+y
 " Forward deletion
 inoremap <C-d> <Del>
 
-" Delete buffers that aren't visible
-func! Delete_buffers()
-    let l:buffers = filter(getbufinfo(), {_, v -> v.hidden})
-    if !empty(l:buffers)
-        execute 'bwipeout' join(map(l:buffers, {_, v -> v.bufnr}))
-    endif
-endfunc
-nnoremap <silent> <leader><BS> :call Delete_buffers()<CR>:echo "Non-windowed buffers are deleted"<CR>
-
 " Meta
   nnoremap <leader>vv :e ~/Repos/config/vimrc<CR>
   nnoremap <leader>vr :source $MYVIMRC<CR> 
@@ -46,6 +38,12 @@ nnoremap <silent> <leader><BS> :call Delete_buffers()<CR>:echo "Non-windowed buf
 
 " Abbreviations
 iabbrev bpry require 'pry'; binding.pry;
+
+" No ex mode
+map Q <Nop>
+
+" Escape in terminal
+tnoremap <esc><esc> <C-\><C-N>
 
 " Specify a directory for plugins
 call plug#begin('~/.vim/plugged')
@@ -193,11 +191,25 @@ Plug 'itmammoth/run-rspec.vim'
 map <Leader>ra :RunSpec<CR>
 map <Leader>rl :RunSpecLine<CR>
 map <Leader>rr :RunSpecLastRun<CR>
-" Plug 'github/copilot.vim'
+Plug 'vim-test/vim-test'
+nmap <silent> <leader>tt :TestNearest<CR>
+nmap <silent> <leader>tf :TestFile<CR>
+nmap <silent> <leader>ta :TestSuite<CR>
+nmap <silent> <leader>tl :TestLast<CR>
+nmap <silent> <leader>tg :TestVisit<CR>
 Plug 'pangloss/vim-javascript'
 Plug 'bronson/vim-visual-star-search'
 Plug 'iamcco/coc-tailwindcss',  {'do': 'yarn install --frozen-lockfile && yarn run build'}
 " disable sortOnSave https://github.com/iamcco/coc-tailwindcss/issues/65
+Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+Plug 'AndrewRadev/qftools.vim'
+Plug 'AndrewRadev/switch.vim'
+let g:switch_mapping = "-"
+Plug 'AndrewRadev/undoquit.vim'
+Plug 'tpope/vim-eunuch'
+Plug 'airblade/vim-localorie'
+nnoremap <silent> <leader>lt :call localorie#translate()<CR>
+nnoremap <silent> <leader>le :echo localorie#expand_key()<CR>
 
 " Initialize plugin system
 call plug#end()
