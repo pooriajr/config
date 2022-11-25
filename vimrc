@@ -120,7 +120,7 @@ Plug 'tpope/vim-rhubarb'
   nnoremap <leader>gw :Git commit -a -m "WIP"<cr>
   nnoremap <leader>gs :Git status<cr>
   nnoremap <leader>gp :Git push<cr>
-  nnoremap <leader>gh :Git push heroku
+  nnoremap <leader>gh :Git push heroku<cr>
   nnoremap <leader>gb :GBrowse<cr>
 Plug 'mhinz/vim-signify'
   set updatetime=100
