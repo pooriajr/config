@@ -115,10 +115,13 @@ nmap <leader>rve :Eview edit<CR>
 
 " Git
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
   nnoremap <leader>gg :G<cr>
   nnoremap <leader>gw :Git commit -a -m "WIP"<cr>
   nnoremap <leader>gs :Git status<cr>
   nnoremap <leader>gp :Git push<cr>
+  nnoremap <leader>gh :Git push heroku
+  nnoremap <leader>gb :GBrowse
 Plug 'mhinz/vim-signify'
   set updatetime=100
   nnoremap <leader>hd :SignifyDiff<cr>
