@@ -207,10 +207,6 @@ Plug 'chrisbra/Colorizer'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'wellle/targets.vim'
 Plug 'chaoren/vim-wordmotion'
-Plug 'itmammoth/run-rspec.vim'
-map <Leader>ra :RunSpec<CR>
-map <Leader>rl :RunSpecLine<CR>
-map <Leader>rr :RunSpecLastRun<CR>
 Plug 'vim-test/vim-test'
 nmap <silent> <leader>tt :TestNearest<CR>
 nmap <silent> <leader>tf :TestFile<CR>
