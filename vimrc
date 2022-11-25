@@ -18,6 +18,7 @@
   set nowrap
   set noemoji
   set relativenumber
+  set scrolloff=20
 
 " Leader
 let mapleader = " "
@@ -109,6 +110,7 @@ Plug 'thoughtbot/vim-rspec'
 Plug 'tpope/vim-bundler'
 nmap <leader>rm :Emodel<CR>
 nmap <leader>rc :Econtroller<CR>
+nmap <leader>rr :Einitializer<CR>
 nmap <leader>rvi :Eview index<CR>
 nmap <leader>rvn :Eview new<CR>
 nmap <leader>rve :Eview edit<CR>
