@@ -17,6 +17,7 @@
   set number
   set nowrap
   set noemoji
+  set relativenumber
 
 " Leader
 let mapleader = " "
@@ -27,6 +28,9 @@ let mapleader = " "
 
 " Copy highlighted text to clipboard https://github.com/neovim/neovim/issues/5052#issuecomment-232083842
 vnoremap <M-c> "+y
+
+" Maximize window with Ctrl + W > Enter
+nnoremap <C-W><CR> <C-W>_<C-W><Bar>
 
 " Forward deletion
 inoremap <C-d> <Del>
@@ -98,14 +102,21 @@ Plug 'junegunn/vim-easy-align'
   " Start interactive EasyAlign for a motion/text object (e.g. gaip)
   nmap ga <Plug>(EasyAlign)
 
-" Rails
+" Ruby/Rails
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-rbenv'
 Plug 'thoughtbot/vim-rspec'
+Plug 'tpope/vim-bundler'
+nmap <leader>rm :Emodel<CR>
+nmap <leader>rc :Econtroller<CR>
+nmap <leader>rvi :Eview index<CR>
+nmap <leader>rvn :Eview new<CR>
+nmap <leader>rve :Eview edit<CR>
 
 " Git
 Plug 'tpope/vim-fugitive'
-  nnoremap <leader>g :G<cr>
+  nnoremap <leader>gg :G<cr>
+  nnoremap <leader>gw :Git commit -a -m "WIP"<cr>
 Plug 'mhinz/vim-signify'
   set updatetime=100
   nnoremap <leader>hd :SignifyDiff<cr>
@@ -178,6 +189,8 @@ endfunction
   Plug 'michaeljsmith/vim-indent-object'
   " c comment
   Plug 'glts/vim-textobj-comment'
+  " l line
+  Plug 'kana/vim-textobj-line'
 
 " Use release branch (recommend)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -207,9 +220,11 @@ Plug 'AndrewRadev/switch.vim'
 let g:switch_mapping = "-"
 Plug 'AndrewRadev/undoquit.vim'
 Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-dispatch'
 Plug 'airblade/vim-localorie'
 nnoremap <silent> <leader>lt :call localorie#translate()<CR>
 nnoremap <silent> <leader>le :echo localorie#expand_key()<CR>
+Plug 'junegunn/vim-peekaboo'
 
 " Initialize plugin system
 call plug#end()
