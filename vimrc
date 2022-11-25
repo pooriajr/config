@@ -1,31 +1,31 @@
 " Standard Settings
-  set smartcase
-  set ignorecase
-  set hlsearch
-  set cursorline
-  set hidden
-  set mouse=a
-  set tabstop=2
-  set shiftwidth=2
-  set expandtab
-  set smartindent
-  set shiftround 
-  set nomodeline
-  set undofile
-  set foldmethod=indent
-  set foldlevel=99
-  set number
-  set nowrap
-  set noemoji
-  set relativenumber
-  set scrolloff=20
+set smartcase
+set ignorecase
+set hlsearch
+set cursorline
+set hidden
+set mouse=a
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set smartindent
+set shiftround 
+set nomodeline
+set undofile
+set foldmethod=indent
+set foldlevel=99
+set number
+set nowrap
+set noemoji
+set relativenumber
+set scrolloff=20
 
 " Leader
 let mapleader = " "
 
 " Improve splits
-  set splitbelow
-  set splitright
+set splitbelow
+set splitright
 
 " Copy highlighted text to clipboard https://github.com/neovim/neovim/issues/5052#issuecomment-232083842
 vnoremap <M-c> "+y
@@ -37,9 +37,9 @@ nnoremap <C-W><CR> <C-W>_<C-W><Bar>
 inoremap <C-d> <Del>
 
 " Meta
-  nnoremap <leader>vv :e ~/Repos/config/vimrc<CR>
-  nnoremap <leader>vr :source $MYVIMRC<CR> 
-  nnoremap <leader>vp :PlugInstall<CR>
+nnoremap <leader>vv :e ~/Repos/config/vimrc<CR>
+nnoremap <leader>vr :source $MYVIMRC<CR> 
+nnoremap <leader>vp :PlugInstall<CR>
 
 " Abbreviations
 iabbrev bpry require 'pry'; binding.pry;
@@ -54,16 +54,16 @@ tnoremap <esc><esc> <C-\><C-N>
 call plug#begin('~/.vim/plugged')
 
 " FZF (both lines needed)
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
-  let g:fzf_history_dir = '~/.local/share/fzf-history'
-  nmap <Leader>f :Files<CR>
-  nmap <Leader>h :History<CR>
-  nmap <Leader>b :Buffers<CR>
-  nmap <Leader>l :BLines<CR>
-  nmap <Leader>/ :Rg<Space>
-  nmap <Leader>? :Helptags!<CR>
-  nmap <Leader>: :History:<CR>
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+let g:fzf_history_dir = '~/.local/share/fzf-history'
+nmap <Leader>f :Files<CR>
+nmap <Leader>h :History<CR>
+nmap <Leader>b :Buffers<CR>
+nmap <Leader>l :BLines<CR>
+nmap <Leader>/ :Rg<Space>
+nmap <Leader>? :Helptags!<CR>
+nmap <Leader>: :History:<CR>
 
 " File Explorer
 Plug 'preservim/nerdtree'
@@ -71,10 +71,12 @@ nnoremap <leader>nn :NERDTreeToggle<CR>
 nnoremap <leader>nf :NERDTreeFind<CR>
 
 " Formatting
+nmap <Leader>= mm=ae`m
+
 Plug 'tpope/vim-surround'
-  let g:surround_{char2nr('=')} = "<%= \r %>"
-  let g:surround_{char2nr('-')} = "<% \r %>"
-  let g:surround_{char2nr('%')} = "{% \r %}"
+let g:surround_{char2nr('=')} = "<%= \r %>"
+let g:surround_{char2nr('-')} = "<% \r %>"
+let g:surround_{char2nr('%')} = "{% \r %}"
 
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
@@ -86,22 +88,22 @@ Plug 'LunarWatcher/auto-pairs', {'branch': 'develop'}
 
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'AndrewRadev/sideways.vim'
-  nnoremap H :SidewaysLeft<cr>
-  nnoremap L :SidewaysRight<cr>
-  omap aa <Plug>SidewaysArgumentTextobjA
-  xmap aa <Plug>SidewaysArgumentTextobjA
-  omap ia <Plug>SidewaysArgumentTextobjI
-  xmap ia <Plug>SidewaysArgumentTextobjI
-  nmap <leader>si <Plug>SidewaysArgumentInsertBefore
-  nmap <leader>sa <Plug>SidewaysArgumentAppendAfter
-  nmap <leader>sI <Plug>SidewaysArgumentInsertFirst
-  nmap <leader>sA <Plug>SidewaysArgumentAppendLast
+nnoremap H :SidewaysLeft<cr>
+nnoremap L :SidewaysRight<cr>
+omap aa <Plug>SidewaysArgumentTextobjA
+xmap aa <Plug>SidewaysArgumentTextobjA
+omap ia <Plug>SidewaysArgumentTextobjI
+xmap ia <Plug>SidewaysArgumentTextobjI
+nmap <leader>si <Plug>SidewaysArgumentInsertBefore
+nmap <leader>sa <Plug>SidewaysArgumentAppendAfter
+nmap <leader>sI <Plug>SidewaysArgumentInsertFirst
+nmap <leader>sA <Plug>SidewaysArgumentAppendLast
 
 Plug 'junegunn/vim-easy-align'
-  " Start interactive EasyAlign in visual mode (e.g. vipga)
-  xmap ga <Plug>(EasyAlign)
-  " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-  nmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 " Ruby/Rails
 Plug 'tpope/vim-rails'
@@ -110,25 +112,26 @@ Plug 'thoughtbot/vim-rspec'
 Plug 'tpope/vim-bundler'
 nmap <leader>rm :Emodel<CR>
 nmap <leader>rc :Econtroller<CR>
-nmap <leader>rr :Einitializer<CR>
 nmap <leader>rvi :Eview index<CR>
 nmap <leader>rvn :Eview new<CR>
 nmap <leader>rve :Eview edit<CR>
+nmap <leader>rr :Einitializer<CR>
+nmap <leader>rt :Rails console<CR>
 
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
-  nnoremap <leader>gg :G<cr>
-  nnoremap <leader>gw :Git commit -a -m "WIP"<cr>
-  nnoremap <leader>gs :Git status<cr>
-  nnoremap <leader>gp :Git push<cr>
-  nnoremap <leader>gh :Git push heroku<cr>
-  nnoremap <leader>gb :GBrowse<cr>
+nnoremap <leader>gg :G<cr>
+nnoremap <leader>gw :Git commit -a -m "WIP"<cr>
+nnoremap <leader>gs :Git status<cr>
+nnoremap <leader>gp :Git push<cr>
+nnoremap <leader>gh :Git push heroku<cr>
+nnoremap <leader>gb :GBrowse<cr>
 Plug 'mhinz/vim-signify'
-  set updatetime=100
-  nnoremap <leader>hd :SignifyDiff<cr>
-  nnoremap <leader>hp :SignifyHunkDiff<cr>
-  nnoremap <leader>hu :SignifyHunkUndo<cr>
+set updatetime=100
+nnoremap <leader>hd :SignifyDiff<cr>
+nnoremap <leader>hp :SignifyHunkDiff<cr>
+nnoremap <leader>hu :SignifyHunkUndo<cr>
 Plug 'rhysd/git-messenger.vim'
 
 " Aesthetics
@@ -138,39 +141,39 @@ Plug 'psliwka/vim-smoothie'
 Plug 'arcticicestudio/nord-vim'
 
 " Nord Overrides
-  augroup nord-theme-overrides
-    autocmd!
-    autocmd ColorScheme nord highlight Folded guibg=#313745 guifg=#556076
-  augroup END
+augroup nord-theme-overrides
+  autocmd!
+  autocmd ColorScheme nord highlight Folded guibg=#313745 guifg=#556076
+augroup END
 
 " Custom Fold Text
-  function! CustomFold()
-      let line = getline(v:foldstart)
-      let foldedlinecount = v:foldend - v:foldstart + 1
-      return printf(' = %-3d%s', foldedlinecount, line)
-  endfunction
+function! CustomFold()
+  let line = getline(v:foldstart)
+  let foldedlinecount = v:foldend - v:foldstart + 1
+  return printf(' = %-3d%s', foldedlinecount, line)
+endfunction
 
-  set foldtext=CustomFold()
-  set fillchars=fold:\  
+set foldtext=CustomFold()
+set fillchars=fold:\  
 
 " Lightline + Bufferline
 Plug 'itchyny/lightline.vim'
 set noshowmode " hide the default status line since we have lightline
 let g:lightline = {
-  \ 'colorscheme': 'nord',
-  \'active': {
-  \   'left': [ [ 'mode', 'paste' ], 
-  \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-  \ },
-  \ 'inactive': {
-  \   'left': [ [ 'filename'] , ['modified' ] ],
-  \   'right': []
-  \ },
-  \ 'component_function': {
-  \   'filename'  : 'FileRelativeToRepo',
-  \   'gitbranch' : 'FugitiveHead'
-  \ },
-  \ }
+      \ 'colorscheme': 'nord',
+      \'active': {
+      \   'left': [ [ 'mode', 'paste' ], 
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'inactive': {
+      \   'left': [ [ 'filename'] , ['modified' ] ],
+      \   'right': []
+      \ },
+      \ 'component_function': {
+      \   'filename'  : 'FileRelativeToRepo',
+      \   'gitbranch' : 'FugitiveHead'
+      \ },
+      \ }
 
 function! FileRelativeToRepo()
   let root = fnamemodify(get(b:, 'git_dir'), ':h')
@@ -182,22 +185,22 @@ function! FileRelativeToRepo()
 endfunction
 
 " Text objects
-  Plug 'kana/vim-textobj-user'
-  " e entire file
-  Plug 'kana/vim-textobj-entire'
-  " r ruby block
-  Plug 'nelstrom/vim-textobj-rubyblock'
-  " f function
-  Plug 'kana/vim-textobj-function'
-  Plug 'haya14busa/vim-textobj-function-syntax'
-  " E erb tag
-  Plug 'whatyouhide/vim-textobj-erb' 
-  " i indent level
-  Plug 'michaeljsmith/vim-indent-object'
-  " c comment
-  Plug 'glts/vim-textobj-comment'
-  " l line
-  Plug 'kana/vim-textobj-line'
+Plug 'kana/vim-textobj-user'
+" e entire file
+Plug 'kana/vim-textobj-entire'
+" r ruby block
+Plug 'nelstrom/vim-textobj-rubyblock'
+" f function
+Plug 'kana/vim-textobj-function'
+Plug 'haya14busa/vim-textobj-function-syntax'
+" E erb tag
+Plug 'whatyouhide/vim-textobj-erb' 
+" i indent level
+Plug 'michaeljsmith/vim-indent-object'
+" c comment
+Plug 'glts/vim-textobj-comment'
+" l line
+Plug 'kana/vim-textobj-line'
 
 " Use release branch (recommend)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -244,8 +247,8 @@ function! ConcealCSSClasses() abort
     set conceallevel=0
   else
     let w:concealed_id =
-      \ matchadd('conceal', "\\v%(class\\s*[:,=]\\s*)@<=([\x22\x27]).{-}\\1",
-      \ 777, -1, #{conceal: '…'})
+          \ matchadd('conceal', "\\v%(class\\s*[:,=]\\s*)@<=([\x22\x27]).{-}\\1",
+          \ 777, -1, #{conceal: '…'})
     set conceallevel=2
   endif
 endfunction
@@ -255,12 +258,12 @@ endfunction
 " Indent if we're at the beginning of a line. Else, do completion.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! InsertTabWrapper()
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-        return "\<tab>"
-    else
-        return "\<c-n>"
-    endif
+  let col = col('.') - 1
+  if !col || getline('.')[col - 1] !~ '\k'
+    return "\<tab>"
+  else
+    return "\<c-n>"
+  endif
 endfunction
 inoremap <expr> <tab> InsertTabWrapper()
 inoremap <s-tab> <c-p>
