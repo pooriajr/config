@@ -66,9 +66,9 @@ nmap <Leader>? :Helptags!<CR>
 nmap <Leader>: :History:<CR>
 
 " File Explorer
-Plug 'preservim/nerdtree'
-nnoremap <leader>nn :NERDTreeToggle<CR>
-nnoremap <leader>nf :NERDTreeFind<CR>
+" Plug 'preservim/nerdtree'
+" nnoremap <leader>nn :NERDTreeToggle<CR>
+" nnoremap <leader>nf :NERDTreeFind<CR>
 
 " Formatting
 nmap <Leader>= mm=ae`m
