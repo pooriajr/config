@@ -117,6 +117,8 @@ nmap <leader>rvn :Eview new<CR>
 nmap <leader>rve :Eview edit<CR>
 nmap <leader>rr :Einitializer<CR>
 nmap <leader>rt :Rails console<CR>
+nmap <leader>rgm :Rails g migration
+nmap <leader>rgs :Rails g scaffold Model
 
 " Git
 Plug 'tpope/vim-fugitive'
