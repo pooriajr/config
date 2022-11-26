@@ -37,7 +37,7 @@ nnoremap <C-W><CR> <C-W>_<C-W><Bar>
 inoremap <C-d> <Del>
 
 " Meta
-nnoremap <leader>vv :e ~/Repos/config/vimrc<CR>
+nnoremap <leader>vv :tabnew ~/Repos/config/vimrc<CR>
 nnoremap <leader>vr :source $MYVIMRC<CR> 
 nnoremap <leader>vp :PlugInstall<CR>
 
@@ -211,6 +211,7 @@ Plug 'kana/vim-textobj-line'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 nnoremap <Leader>e :CocCommand explorer<CR>
 
+" misc
 Plug 'chrisbra/Colorizer'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'wellle/targets.vim'
@@ -236,6 +237,7 @@ Plug 'airblade/vim-localorie'
 nnoremap <silent> <leader>lt :call localorie#translate()<CR>
 nnoremap <silent> <leader>le :echo localorie#expand_key()<CR>
 Plug 'junegunn/vim-peekaboo'
+nnoremap <leader>n :noh<CR>
 
 " Initialize plugin system
 call plug#end()
