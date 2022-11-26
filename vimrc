@@ -125,6 +125,7 @@ nmap <leader>rt :Rails console<CR>
 nmap <leader>rgm :Rails g migration
 nmap <leader>rgs :Rails g scaffold Model
 nmap <leader>rdm :Rails db:migrate
+nmap <leader>rdh :!heroku run rails db:migrate<cr>
 nmap <leader>rdr :Rails db:rollback
 nmap <leader>rdb :Rails db<CR>
 
