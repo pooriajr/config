@@ -127,7 +127,7 @@ nmap <leader>rdb :Rails db<CR>
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 nnoremap <leader>gg :G<cr>
-nnoremap <leader>gw :Git commit -a -m "WIP"<CR>:Git push<CR>
+nnoremap <leader>gw !git commit -am 'WIP && git push<CR>
 nnoremap <leader>gs :Git status<cr>
 nnoremap <leader>gp :Git push<cr>
 nnoremap <leader>gh :Git push heroku<cr>
