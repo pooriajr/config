@@ -19,6 +19,7 @@ set nowrap
 set noemoji
 set relativenumber
 set scrolloff=20
+set gdefault " assume the /g flag on :s substitutions to replace all matches in a line
 
 " Leader
 let mapleader = " "
@@ -44,14 +45,18 @@ nnoremap <leader>vp :PlugInstall<CR>
 " Abbreviations
 iabbrev bpry require 'pry'; binding.pry;
 
-" No ex mode
-map Q <Nop>
+" No ex mode - instead execute macro in q
+map Q @q
 
 " Escape in terminal
 tnoremap <esc><esc> <C-\><C-N>
 
 " Specify a directory for plugins
 call plug#begin('~/.vim/plugged')
+
+" Movement
+nmap k gk
+nmap j gj
 
 " FZF (both lines needed)
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -237,7 +242,7 @@ Plug 'airblade/vim-localorie'
 nnoremap <silent> <leader>lt :call localorie#translate()<CR>
 nnoremap <silent> <leader>le :echo localorie#expand_key()<CR>
 Plug 'junegunn/vim-peekaboo'
-nnoremap <leader>n :noh<CR>
+nnoremap <C-h>n :nohl<CR>
 
 " Initialize plugin system
 call plug#end()
