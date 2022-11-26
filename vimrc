@@ -133,7 +133,7 @@ nmap <leader>rdb :Rails db<CR>
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 nnoremap <leader>gg :G<cr>
-nnoremap <leader>gw :cd %:p:h<cr>:!git add . && git commit -m 'WIP' && git push<cr>
+nnoremap <leader>gw :cd %:p:h<cr>:!git add . && git commit -m 'WIP' && git push<cr>:cd -<cr>
 nnoremap <leader>gs :Git status<cr>
 nnoremap <leader>gp :Git push<cr>
 nnoremap <leader>gh :Git push heroku<cr>
@@ -244,6 +244,7 @@ nnoremap <silent> <leader>lt :call localorie#translate()<CR>
 nnoremap <silent> <leader>le :echo localorie#expand_key()<CR>
 Plug 'junegunn/vim-peekaboo'
 nnoremap <C-h>n :nohl<CR>
+map <leader>o :only<cr>
 
 " Initialize plugin system
 call plug#end()
