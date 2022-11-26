@@ -218,7 +218,7 @@ nnoremap <Leader>e :CocCommand explorer<CR>
 
 " misc
 Plug 'chrisbra/Colorizer'
-Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+" Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'wellle/targets.vim'
 Plug 'chaoren/vim-wordmotion'
 Plug 'vim-test/vim-test'
