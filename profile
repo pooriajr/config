@@ -6,6 +6,8 @@ alias gs='git status'
 alias gpl='git pull'
 alias gps='git push'
 alias gl='git log'
+alias gw='git add . && git commit -m "WIP" && git push'
+alias gh='git push heroku'
 
 alias vi='nvim'
 

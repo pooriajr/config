@@ -18,8 +18,9 @@ set number
 set nowrap
 set noemoji
 set relativenumber
-set scrolloff=20
+set scrolloff=3
 set gdefault " assume the /g flag on :s substitutions to replace all matches in a line
+set timeoutlen=10000 "just give me time
 
 " Leader
 let mapleader = " "
@@ -71,9 +72,9 @@ nmap <Leader>? :Helptags!<CR>
 nmap <Leader>: :History:<CR>
 
 " File Explorer
-" Plug 'preservim/nerdtree'
-" nnoremap <leader>nn :NERDTreeToggle<CR>
-" nnoremap <leader>nf :NERDTreeFind<CR>
+Plug 'preservim/nerdtree'
+nnoremap <leader>nn :NERDTreeToggle<CR>
+nnoremap <leader>nf :NERDTreeFind<CR>
 
 " Formatting
 nmap <Leader>= mm=ae`m
@@ -120,6 +121,7 @@ nmap <leader>rc :Econtroller<CR>
 nmap <leader>rvi :Eview index<CR>
 nmap <leader>rvn :Eview new<CR>
 nmap <leader>rve :Eview edit<CR>
+nmap <leader>rvs :Eview show<CR>
 nmap <leader>rr :Einitializer<CR>
 nmap <leader>rt :Rails console<CR>
 nmap <leader>rgm :Rails g migration
@@ -133,7 +135,7 @@ nmap <leader>rdb :Rails db<CR>
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 nnoremap <leader>gg :G<cr>
-nnoremap <leader>gw :cd %:p:h<cr>:!git add . && git commit -m 'WIP' && git push<cr>:cd -<cr>
+nnoremap <leader>gw :Git add . \| Git commit -m "WIP" \| Git push<cr>
 nnoremap <leader>gs :Git status<cr>
 nnoremap <leader>gp :Git push<cr>
 nnoremap <leader>gh :Git push heroku<cr>
@@ -215,7 +217,6 @@ Plug 'kana/vim-textobj-line'
 
 " Use release branch (recommend)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-nnoremap <Leader>e :CocCommand explorer<CR>
 
 " misc
 Plug 'chrisbra/Colorizer'
@@ -243,8 +244,9 @@ Plug 'airblade/vim-localorie'
 nnoremap <silent> <leader>lt :call localorie#translate()<CR>
 nnoremap <silent> <leader>le :echo localorie#expand_key()<CR>
 Plug 'junegunn/vim-peekaboo'
-nnoremap <C-h>n :nohl<CR>
+nnoremap <C-/> :nohl<CR>
 map <leader>o :only<cr>
+Plug 'github/copilot.vim'
 
 " Initialize plugin system
 call plug#end()
