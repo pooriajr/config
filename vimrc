@@ -50,6 +50,7 @@ iabbrev bpry require 'pry'; binding.pry;
 map Q @q
 
 " Escape in terminal
+map <Leader>> <C-W>s:terminal<CR>a
 tnoremap <esc><esc> <C-\><C-N>
 
 " Specify a directory for plugins

@@ -28,3 +28,5 @@ export EDITOR="nvim"
 
 # fix for this error when running rails server: objc[52770]: +[__NSCFConstantString initialize] may have been in progress in another thread when fork() was called.
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+
+alias deploy="cap production deploy"
