@@ -85,6 +85,7 @@ let g:surround_{char2nr('-')} = "<% \r %>"
 let g:surround_{char2nr('%')} = "{% \r %}"
 
 Plug 'tpope/vim-commentary'
+autocmd FileType yaml setlocal commentstring=#\ %s
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-abolish'
@@ -231,9 +232,9 @@ nmap <silent> <leader>tl :TestLast<CR>
 nmap <silent> <leader>tg :TestVisit<CR>
 Plug 'pangloss/vim-javascript'
 Plug 'bronson/vim-visual-star-search'
-Plug 'iamcco/coc-tailwindcss',  {'do': 'yarn install --frozen-lockfile && yarn run build'}
+" Plug 'iamcco/coc-tailwindcss',  {'do': 'yarn install --frozen-lockfile && yarn run build'}
 " disable sortOnSave https://github.com/iamcco/coc-tailwindcss/issues/65
-Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+" Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
 Plug 'AndrewRadev/qftools.vim'
 Plug 'AndrewRadev/switch.vim'
 let g:switch_mapping = "-"
@@ -247,6 +248,9 @@ Plug 'junegunn/vim-peekaboo'
 nnoremap <C-/> :nohl<CR>
 map <leader>o :only<cr>
 Plug 'github/copilot.vim'
+map <leader>cp :Copilot panel<cr>
+Plug 'pooriar/codi.vim'
+map <leader>co :Codi<cr>
 
 " Initialize plugin system
 call plug#end()
