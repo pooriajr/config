@@ -1,7 +1,8 @@
 " Standard Settings
 set smartcase
 set ignorecase
-set hlsearch
+set nohlsearch
+set incsearch
 set cursorline
 set hidden
 set mouse=a
@@ -18,9 +19,11 @@ set number
 set nowrap
 set noemoji
 set relativenumber
-set scrolloff=3
+set scrolloff=8
 set gdefault " assume the /g flag on :s substitutions to replace all matches in a line
 set timeoutlen=10000 "just give me time
+set linebreak
+set noswapfile
 
 " Leader
 let mapleader = " "
@@ -112,6 +115,10 @@ Plug 'junegunn/vim-easy-align'
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+"Drag lines around in visual mode
+vmap J :m '>+1<CR>gv=gv
+vmap K :m '<-2<CR>gv=gv
 
 " Ruby/Rails
 Plug 'tpope/vim-rails'
