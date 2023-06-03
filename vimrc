@@ -1,7 +1,7 @@
 " Standard Settings
 set smartcase
 set ignorecase
-set nohlsearch
+" set nohlsearch
 set incsearch
 set cursorline
 set hidden
@@ -13,10 +13,9 @@ set smartindent
 set shiftround 
 set nomodeline
 set undofile
-set foldmethod=indent
+set foldmethod=manual
 set foldlevel=99
 set number
-set nowrap
 set noemoji
 set relativenumber
 set scrolloff=8
@@ -24,9 +23,14 @@ set gdefault " assume the /g flag on :s substitutions to replace all matches in 
 set timeoutlen=10000 "just give me time
 set linebreak
 set noswapfile
+set nowrap
 
 " Leader
 let mapleader = " "
+
+" Leader shorcuts
+nnoremap <leader>q :q<CR>
+nnoremap <leader>w :w<CR>
 
 " Improve splits
 set splitbelow
@@ -84,9 +88,15 @@ nnoremap <leader>nf :NERDTreeFind<CR>
 nmap <Leader>= mm=ae`m
 
 Plug 'tpope/vim-surround'
-let g:surround_{char2nr('=')} = "<%= \r %>"
-let g:surround_{char2nr('-')} = "<% \r %>"
-let g:surround_{char2nr('%')} = "{% \r %}"
+" some erb conveniences from https://gist.github.com/AndrewRadev/3028833 (the makes it only work in erb files)
+let b:surround_{char2nr('=')} = "<%= \r %>"
+let b:surround_{char2nr('-')} = "<% \r %>"
+let b:surround_{char2nr('%')} = "{% \r %}"
+let b:surround_{char2nr('i')} = "<% if \1<% if: \1 %> \r <% end %>"
+let b:surround_{char2nr('u')} = "<% unless \1<% unless: \1 %> \r <% end %>"
+let b:surround_{char2nr('w')} = "<% while \1<% while: \1 do %> \r <% end %>"
+let b:surround_{char2nr('e')} = "<% \1<% collection: \1.each do |\2item: \2| %> \r <% end %>"
+let b:surround_{char2nr('d')} = "<% do %> \r <% end %>"
 
 Plug 'tpope/vim-commentary'
 autocmd FileType yaml setlocal commentstring=#\ %s
@@ -139,6 +149,7 @@ nmap <leader>rdm :Rails db:migrate
 nmap <leader>rdh :!heroku run rails db:migrate<cr>
 nmap <leader>rdr :Rails db:rollback
 nmap <leader>rdb :Rails db<CR>
+nmap <leader>R :!ruby %<CR>
 
 " Git
 Plug 'tpope/vim-fugitive'
@@ -147,14 +158,16 @@ nnoremap <leader>gg :G<cr>
 nnoremap <leader>gw :Git add . \| Git commit -m "WIP" \| Git push<cr>
 nnoremap <leader>gs :Git status<cr>
 nnoremap <leader>gp :Git push<cr>
-nnoremap <leader>gh :Git push heroku<cr>
 nnoremap <leader>gb :GBrowse<cr>
 Plug 'mhinz/vim-signify'
-set updatetime=100
-nnoremap <leader>hd :SignifyDiff<cr>
-nnoremap <leader>hp :SignifyHunkDiff<cr>
-nnoremap <leader>hu :SignifyHunkUndo<cr>
+set updatetime=50
+nnoremap <leader>gd :SignifyDiff<cr>
+nnoremap <leader>ghd :SignifyHunkDiff<cr>
+nnoremap <leader>ghu :SignifyHunkUndo<cr>
 Plug 'rhysd/git-messenger.vim'
+
+" Deployment
+map <leader>D :Dispatch deploy<cr>
 
 " Aesthetics
 set termguicolors
@@ -217,8 +230,6 @@ Plug 'kana/vim-textobj-function'
 Plug 'haya14busa/vim-textobj-function-syntax'
 " E erb tag
 Plug 'whatyouhide/vim-textobj-erb' 
-" i indent level
-Plug 'michaeljsmith/vim-indent-object'
 " c comment
 Plug 'glts/vim-textobj-comment'
 " l line
@@ -257,8 +268,44 @@ nnoremap <C-/> :nohl<CR>
 map <leader>o :only<cr>
 Plug 'github/copilot.vim'
 map <leader>cp :Copilot panel<cr>
+let g:copilot_filetypes = {
+      \ '*': v:true,
+      \ }
 Plug 'pooriar/codi.vim'
 map <leader>co :Codi<cr>
+Plug 'junegunn/goyo.vim'
+Plug 'mbbill/undotree'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'ThePrimeagen/harpoon'
+nnoremap <leader>m :lua require("harpoon.mark").add_file()<CR>
+nnoremap <leader>h :lua require("harpoon.ui").toggle_quick_menu()<CR>
+
+nnoremap U :UndotreeToggle<CR>
+if has("persistent_undo")
+   let target_path = expand('~/.undodir')
+
+    " create the directory and any parent directories
+    " if the location does not exist.
+    if !isdirectory(target_path)
+        call mkdir(target_path, "p", 0700)
+    endif
+
+    let &undodir=target_path
+    set undofile
+endif
+
+" Keep page centered when searching around
+nmap n nzzzv
+nmap N Nzzzv
+
+" Paste over soemthing without replacing paste buffer 
+xmap <leader>p "_dP
+
+" Copy to clipboard
+nmap <leader>y "+y
+nmap <leader>Y "+yy
+vmap <leader>y "+y
+
 
 " Initialize plugin system
 call plug#end()
@@ -285,15 +332,15 @@ endfunction
 " MULTIPURPOSE TAB KEY
 " Indent if we're at the beginning of a line. Else, do completion.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! InsertTabWrapper()
-  let col = col('.') - 1
-  if !col || getline('.')[col - 1] !~ '\k'
-    return "\<tab>"
-  else
-    return "\<c-n>"
-  endif
-endfunction
-inoremap <expr> <tab> InsertTabWrapper()
-inoremap <s-tab> <c-p>
+" function! InsertTabWrapper()
+"   let col = col('.') - 1
+"   if !col || getline('.')[col - 1] !~ '\k'
+"     return "\<tab>"
+"   else
+"     return "\<c-n>"
+"   endif
+" endfunction
+" inoremap <expr> <tab> InsertTabWrapper()
+" inoremap <s-tab> <c-p>
 
 " That's all, folks!
