@@ -38,14 +38,6 @@ set splitright
 " Copy highlighted text to clipboard with command c https://github.com/neovim/neovim/issues/5052#issuecomment-232083842
 vnoremap <M-c> "+y
 
-" Copy to clipboard
-nmap <leader>y "+y
-nmap <leader>Y "+yy
-vmap <leader>y "+y
-" Paste from clipboard
-nmap <leader>p "+p
-vmap <leader>p "+p
-
 " Maximize window with Ctrl + W > Enter
 nnoremap <C-W><CR> <C-W>_<C-W><Bar>
 
@@ -274,6 +266,11 @@ map <leader>co :Codi<cr>
 
 Plug 'mbbill/undotree'
 
+Plug 'nvim-lua/plenary.nvim'
+Plug 'ThePrimeagen/harpoon'
+nnoremap <leader>m :lua require("harpoon.mark").add_file()<CR>
+nnoremap <leader>h :lua require("harpoon.ui").toggle_quick_menu()<CR>
+
 nnoremap U :UndotreeToggle<CR>
 if has("persistent_undo")
    let target_path = expand('~/.undodir')
@@ -291,6 +288,14 @@ endif
 " Keep page centered when searching around
 nmap n nzzzv
 nmap N Nzzzv
+
+" Copy to clipboard
+nmap <leader>y "+y
+nmap <leader>Y "+yy
+vmap <leader>y "+y
+" Paste from clipboard
+nmap <leader>p "+p
+vmap <leader>p "+p
 
 " Initialize plugin system
 call plug#end()
