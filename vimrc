@@ -18,9 +18,8 @@ set foldlevel=99
 set number
 set noemoji
 set relativenumber
-set scrolloff=8
+set scrolloff=3
 set gdefault " assume the /g flag on :s substitutions to replace all matches in a line
-set timeoutlen=10000 "just give me time
 set linebreak
 set noswapfile
 set nowrap
@@ -36,8 +35,16 @@ nnoremap <leader>w :w<CR>
 set splitbelow
 set splitright
 
-" Copy highlighted text to clipboard https://github.com/neovim/neovim/issues/5052#issuecomment-232083842
+" Copy highlighted text to clipboard with command c https://github.com/neovim/neovim/issues/5052#issuecomment-232083842
 vnoremap <M-c> "+y
+
+" Copy to clipboard
+nmap <leader>y "+y
+nmap <leader>Y "+yy
+vmap <leader>y "+y
+" Paste from clipboard
+nmap <leader>p "+p
+vmap <leader>p "+p
 
 " Maximize window with Ctrl + W > Enter
 nnoremap <C-W><CR> <C-W>_<C-W><Bar>
@@ -63,7 +70,7 @@ tnoremap <esc><esc> <C-\><C-N>
 " Specify a directory for plugins
 call plug#begin('~/.vim/plugged')
 
-" Movement
+" Move on visual lines
 nmap k gk
 nmap j gj
 
@@ -72,9 +79,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 nmap <Leader>f :Files<CR>
-nmap <Leader>h :History<CR>
 nmap <Leader>b :Buffers<CR>
-nmap <Leader>l :BLines<CR>
 nmap <Leader>/ :Rg<Space>
 nmap <Leader>? :Helptags!<CR>
 nmap <Leader>: :History:<CR>
@@ -87,8 +92,11 @@ nnoremap <leader>nf :NERDTreeFind<CR>
 " Formatting
 nmap <Leader>= mm=ae`m
 
+" ! to :! (for fast console commands)
+nnoremap ! :!
+
 Plug 'tpope/vim-surround'
-" some erb conveniences from https://gist.github.com/AndrewRadev/3028833 (the makes it only work in erb files)
+" some erb conveniences from https://gist.github.com/AndrewRadev/3028833 (the b: makes it only work in erb files)
 let b:surround_{char2nr('=')} = "<%= \r %>"
 let b:surround_{char2nr('-')} = "<% \r %>"
 let b:surround_{char2nr('%')} = "{% \r %}"
@@ -144,12 +152,14 @@ nmap <leader>rvs :Eview show<CR>
 nmap <leader>rr :Einitializer<CR>
 nmap <leader>rt :Rails console<CR>
 nmap <leader>rgm :Rails g migration
-nmap <leader>rgs :Rails g scaffold Model
 nmap <leader>rdm :Rails db:migrate
-nmap <leader>rdh :!heroku run rails db:migrate<cr>
 nmap <leader>rdr :Rails db:rollback
 nmap <leader>rdb :Rails db<CR>
 nmap <leader>R :!ruby %<CR>
+
+Plug 'airblade/vim-localorie' "i18n
+nnoremap <silent> <leader>lt :call localorie#translate()<CR>
+nnoremap <silent> <leader>le :echo localorie#expand_key()<CR>
 
 " Git
 Plug 'tpope/vim-fugitive'
@@ -221,64 +231,48 @@ endfunction
 
 " Text objects
 Plug 'kana/vim-textobj-user'
-" e entire file
-Plug 'kana/vim-textobj-entire'
-" r ruby block
-Plug 'nelstrom/vim-textobj-rubyblock'
-" f function
-Plug 'kana/vim-textobj-function'
-Plug 'haya14busa/vim-textobj-function-syntax'
-" E erb tag
-Plug 'whatyouhide/vim-textobj-erb' 
-" c comment
-Plug 'glts/vim-textobj-comment'
-" l line
-Plug 'kana/vim-textobj-line'
-
-" Use release branch (recommend)
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-" misc
-Plug 'chrisbra/Colorizer'
-" Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'kana/vim-textobj-entire' " e entire file
+Plug 'nelstrom/vim-textobj-rubyblock' " r ruby block
+Plug 'kana/vim-textobj-function' " f function
+Plug 'haya14busa/vim-textobj-function-syntax' " f function
+Plug 'whatyouhide/vim-textobj-erb' " E erb tag
+Plug 'glts/vim-textobj-comment' " c comment
+Plug 'kana/vim-textobj-line' " l line
+" smarter text objects
 Plug 'wellle/targets.vim'
 Plug 'chaoren/vim-wordmotion'
+
+" testing
 Plug 'vim-test/vim-test'
 nmap <silent> <leader>tt :TestNearest<CR>
 nmap <silent> <leader>tf :TestFile<CR>
 nmap <silent> <leader>ta :TestSuite<CR>
 nmap <silent> <leader>tl :TestLast<CR>
 nmap <silent> <leader>tg :TestVisit<CR>
+
+" misc
 Plug 'pangloss/vim-javascript'
 Plug 'bronson/vim-visual-star-search'
-" Plug 'iamcco/coc-tailwindcss',  {'do': 'yarn install --frozen-lockfile && yarn run build'}
-" disable sortOnSave https://github.com/iamcco/coc-tailwindcss/issues/65
-" Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
 Plug 'AndrewRadev/qftools.vim'
 Plug 'AndrewRadev/switch.vim'
 let g:switch_mapping = "-"
 Plug 'AndrewRadev/undoquit.vim'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-dispatch'
-Plug 'airblade/vim-localorie'
-nnoremap <silent> <leader>lt :call localorie#translate()<CR>
-nnoremap <silent> <leader>le :echo localorie#expand_key()<CR>
 Plug 'junegunn/vim-peekaboo'
 nnoremap <C-/> :nohl<CR>
 map <leader>o :only<cr>
+
 Plug 'github/copilot.vim'
 map <leader>cp :Copilot panel<cr>
 let g:copilot_filetypes = {
       \ '*': v:true,
       \ }
+
 Plug 'pooriar/codi.vim'
 map <leader>co :Codi<cr>
-Plug 'junegunn/goyo.vim'
+
 Plug 'mbbill/undotree'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'ThePrimeagen/harpoon'
-nnoremap <leader>m :lua require("harpoon.mark").add_file()<CR>
-nnoremap <leader>h :lua require("harpoon.ui").toggle_quick_menu()<CR>
 
 nnoremap U :UndotreeToggle<CR>
 if has("persistent_undo")
@@ -297,15 +291,6 @@ endif
 " Keep page centered when searching around
 nmap n nzzzv
 nmap N Nzzzv
-
-" Paste over soemthing without replacing paste buffer 
-xmap <leader>p "_dP
-
-" Copy to clipboard
-nmap <leader>y "+y
-nmap <leader>Y "+yy
-vmap <leader>y "+y
-
 
 " Initialize plugin system
 call plug#end()
@@ -332,15 +317,15 @@ endfunction
 " MULTIPURPOSE TAB KEY
 " Indent if we're at the beginning of a line. Else, do completion.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" function! InsertTabWrapper()
-"   let col = col('.') - 1
-"   if !col || getline('.')[col - 1] !~ '\k'
-"     return "\<tab>"
-"   else
-"     return "\<c-n>"
-"   endif
-" endfunction
-" inoremap <expr> <tab> InsertTabWrapper()
-" inoremap <s-tab> <c-p>
+function! InsertTabWrapper()
+  let col = col('.') - 1
+  if !col || getline('.')[col - 1] !~ '\k'
+    return "\<tab>"
+  else
+    return "\<c-n>"
+  endif
+endfunction
+inoremap <expr> <tab> InsertTabWrapper()
+inoremap <s-tab> <c-p>
 
 " That's all, folks!
