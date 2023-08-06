@@ -13,8 +13,8 @@ set smartindent
 set shiftround 
 set nomodeline
 set undofile
-set foldmethod=manual
-set foldlevel=99
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 set number
 set noemoji
 set relativenumber
@@ -72,6 +72,7 @@ Plug 'junegunn/fzf.vim'
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 nmap <Leader>f :Files<CR>
 nmap <Leader>b :Buffers<CR>
+nmap <Leader>h :History<CR>
 nmap <Leader>/ :Rg<Space>
 nmap <Leader>? :Helptags!<CR>
 nmap <Leader>: :History:<CR>
@@ -175,13 +176,15 @@ map <leader>D :Dispatch deploy<cr>
 set termguicolors
 Plug 'machakann/vim-highlightedyank'
 Plug 'psliwka/vim-smoothie'
-Plug 'arcticicestudio/nord-vim'
+" Plug 'arcticicestudio/nord-vim'
+Plug 'shaunsingh/nord.nvim'
+let g:nord_italic = v:false
 
 " Nord Overrides
-augroup nord-theme-overrides
-  autocmd!
-  autocmd ColorScheme nord highlight Folded guibg=#313745 guifg=#556076
-augroup END
+" augroup nord-theme-overrides
+"   autocmd!
+"   autocmd ColorScheme nord highlight Folded guibg=#313745 guifg=#556076
+" augroup END
 
 " Custom Fold Text
 function! CustomFold()
@@ -252,8 +255,11 @@ Plug 'AndrewRadev/undoquit.vim'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-dispatch'
 Plug 'junegunn/vim-peekaboo'
+Plug 'junegunn/goyo.vim'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 nnoremap <C-/> :nohl<CR>
 map <leader>o :only<cr>
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 Plug 'github/copilot.vim'
 map <leader>cp :Copilot panel<cr>
@@ -266,23 +272,18 @@ map <leader>co :Codi<cr>
 
 Plug 'mbbill/undotree'
 
-Plug 'nvim-lua/plenary.nvim'
-Plug 'ThePrimeagen/harpoon'
-nnoremap <leader>m :lua require("harpoon.mark").add_file()<CR>
-nnoremap <leader>h :lua require("harpoon.ui").toggle_quick_menu()<CR>
-
 nnoremap U :UndotreeToggle<CR>
 if has("persistent_undo")
-   let target_path = expand('~/.undodir')
+  let target_path = expand('~/.undodir')
 
-    " create the directory and any parent directories
-    " if the location does not exist.
-    if !isdirectory(target_path)
-        call mkdir(target_path, "p", 0700)
-    endif
+  " create the directory and any parent directories
+  " if the location does not exist.
+  if !isdirectory(target_path)
+    call mkdir(target_path, "p", 0700)
+  endif
 
-    let &undodir=target_path
-    set undofile
+  let &undodir=target_path
+  set undofile
 endif
 
 " Keep page centered when searching around
@@ -303,6 +304,26 @@ call plug#end()
 " this has to be down here or it doesnt work with vim-plug 🤷‍♂️
 colorscheme nord
 
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = { "vim", "html", "css", "javascript", "ruby", "json", "yaml" },
+  sync_install = false,
+  auto_install = true,
+  highlight = {
+    enable = true,
+  },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "gnn",
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
+    },
+  },
+}
+EOF
+
 nnoremap <Leader>c :call ConcealCSSClasses()<cr>
 function! ConcealCSSClasses() abort
   let id = get(w:, 'concealed_id', 0)
@@ -322,15 +343,15 @@ endfunction
 " MULTIPURPOSE TAB KEY
 " Indent if we're at the beginning of a line. Else, do completion.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! InsertTabWrapper()
-  let col = col('.') - 1
-  if !col || getline('.')[col - 1] !~ '\k'
-    return "\<tab>"
-  else
-    return "\<c-n>"
-  endif
-endfunction
-inoremap <expr> <tab> InsertTabWrapper()
-inoremap <s-tab> <c-p>
+" function! InsertTabWrapper()
+"   let col = col('.') - 1
+"   if !col || getline('.')[col - 1] !~ '\k'
+"     return "\<tab>"
+"   else
+"     return "\<c-n>"
+"   endif
+" endfunction
+" inoremap <expr> <tab> InsertTabWrapper()
+" inoremap <s-tab> <c-p>
 
 " That's all, folks!
