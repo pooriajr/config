@@ -270,9 +270,6 @@ let g:copilot_filetypes = {
 Plug 'pooriar/codi.vim'
 map <leader>co :Codi<cr>
 
-Plug 'folke/noice.nvim'
-Plug 'MunifTanjim/nui.nvim'
-
 Plug 'mbbill/undotree'
 
 nnoremap U :UndotreeToggle<CR>
@@ -326,8 +323,6 @@ require'nvim-treesitter.configs'.setup {
       },
 }
 EOF
-
-lua require("noice").setup()
 
 nnoremap <Leader>c :call ConcealCSSClasses()<cr>
 function! ConcealCSSClasses() abort
