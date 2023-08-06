@@ -270,6 +270,9 @@ let g:copilot_filetypes = {
 Plug 'pooriar/codi.vim'
 map <leader>co :Codi<cr>
 
+Plug 'folke/noice.nvim'
+Plug 'MunifTanjim/nui.nvim'
+
 Plug 'mbbill/undotree'
 
 nnoremap U :UndotreeToggle<CR>
@@ -311,18 +314,20 @@ require'nvim-treesitter.configs'.setup {
   auto_install = true,
   highlight = {
     enable = true,
-  },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "gnn",
-      node_incremental = "grn",
-      scope_incremental = "grc",
-      node_decremental = "grm",
     },
-  },
+    incremental_selection = {
+      enable = true,
+      keymaps = {
+        init_selection = "gnn",
+        node_incremental = "grn",
+        scope_incremental = "grc",
+        node_decremental = "grm",
+        },
+      },
 }
 EOF
+
+lua require("noice").setup()
 
 nnoremap <Leader>c :call ConcealCSSClasses()<cr>
 function! ConcealCSSClasses() abort
