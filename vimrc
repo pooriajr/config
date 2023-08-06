@@ -306,7 +306,7 @@ colorscheme nord
 
 lua << EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "vim", "html", "css", "javascript", "ruby", "json", "yaml" },
+  ensure_installed = { "vim", "html", "css", "javascript", "markdown", "ruby", "json", "yaml" },
   sync_install = false,
   auto_install = true,
   highlight = {
