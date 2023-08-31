@@ -15,6 +15,7 @@ set nomodeline
 set undofile
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
+set nofoldenable
 set number
 set noemoji
 set relativenumber
@@ -72,7 +73,7 @@ Plug 'junegunn/fzf.vim'
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 nmap <Leader>f :Files<CR>
 nmap <Leader>b :Buffers<CR>
-nmap <Leader>h :History<CR>
+nmap <Leader>H :History<CR>
 nmap <Leader>/ :Rg<Space>
 nmap <Leader>? :Helptags!<CR>
 nmap <Leader>: :History:<CR>
@@ -158,7 +159,20 @@ nnoremap <silent> <leader>le :echo localorie#expand_key()<CR>
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 nnoremap <leader>gg :G<cr>
-nnoremap <leader>gw :Git add . \| Git commit -m "WIP" \| Git push<cr>
+" only do this if the pwd doesn't include "skillit"
+nnoremap <leader>gw :call CommitIfNotSkillit()<CR>
+
+function! CommitIfNotSkillit()
+  let l:cwd = getcwd()
+  if l:cwd !~ 'skillit'
+    execute 'Git add .'
+    execute 'Git commit -m "WIP"'
+    execute 'Git push'
+  else
+    echo "Operation not allowed in skillit directory."
+  endif
+endfunction
+
 nnoremap <leader>gs :Git status<cr>
 nnoremap <leader>gp :Git push<cr>
 nnoremap <leader>gb :GBrowse<cr>
@@ -260,6 +274,11 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 nnoremap <C-/> :nohl<CR>
 map <leader>o :only<cr>
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+Plug 'nvim-lua/plenary.nvim'
+Plug 'ThePrimeagen/harpoon'
+nnoremap <leader>m :lua require("harpoon.mark").add_file()<CR>
+nnoremap <leader>h :lua require("harpoon.ui").toggle_quick_menu()<CR>
 
 Plug 'github/copilot.vim'
 map <leader>cp :Copilot panel<cr>
