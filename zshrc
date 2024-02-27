@@ -33,5 +33,3 @@ eval "$(zoxide init zsh)"
 exit_zsh() { exit }
 zle -N exit_zsh
 bindkey '^D' exit_zsh
-
-eval $(thefuck --alias)

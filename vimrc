@@ -18,7 +18,7 @@ set foldexpr=nvim_treesitter#foldexpr()
 set nofoldenable
 set number
 set noemoji
-set relativenumber
+" set relativenumber
 set scrolloff=3
 set gdefault " assume the /g flag on :s substitutions to replace all matches in a line
 set linebreak
@@ -46,7 +46,7 @@ nnoremap <C-W><CR> <C-W>_<C-W><Bar>
 inoremap <C-d> <Del>
 
 " Meta
-nnoremap <leader>vv :tabnew ~/Repos/config/vimrc<CR>
+nnoremap <leader>vv :tabnew ~/config/vimrc<CR>
 nnoremap <leader>vr :source $MYVIMRC<CR> 
 nnoremap <leader>vp :PlugInstall<CR>
 
@@ -72,8 +72,9 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 nmap <Leader>f :Files<CR>
+nmap <Leader>l :Lines<CR>
 nmap <Leader>b :Buffers<CR>
-nmap <Leader>H :History<CR>
+nmap <Leader>h :History<CR>
 nmap <Leader>/ :Rg<Space>
 nmap <Leader>? :Helptags!<CR>
 nmap <Leader>: :History:<CR>
@@ -258,6 +259,10 @@ nmap <silent> <leader>tf :TestFile<CR>
 nmap <silent> <leader>ta :TestSuite<CR>
 nmap <silent> <leader>tl :TestLast<CR>
 nmap <silent> <leader>tg :TestVisit<CR>
+let test#strategy = "neovim"
+
+" LSP
+Plug 'neovim/nvim-lspconfig'
 
 " misc
 Plug 'pangloss/vim-javascript'
@@ -268,28 +273,30 @@ let g:switch_mapping = "-"
 Plug 'AndrewRadev/undoquit.vim'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-dispatch'
-Plug 'junegunn/vim-peekaboo'
 Plug 'junegunn/goyo.vim'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 nnoremap <C-/> :nohl<CR>
 map <leader>o :only<cr>
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
-Plug 'nvim-lua/plenary.nvim'
-Plug 'ThePrimeagen/harpoon'
-nnoremap <leader>m :lua require("harpoon.mark").add_file()<CR>
-nnoremap <leader>h :lua require("harpoon.ui").toggle_quick_menu()<CR>
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-Plug 'github/copilot.vim'
-map <leader>cp :Copilot panel<cr>
-let g:copilot_filetypes = {
-      \ '*': v:true,
-      \ }
+" Plug 'github/copilot.vim'
+" map <leader>cp :Copilot panel<cr>
+" let g:copilot_filetypes = {
+"       \ '*': v:true,
+"       \ }
 
 Plug 'pooriar/codi.vim'
 map <leader>co :Codi<cr>
 
 Plug 'mbbill/undotree'
+
+Plug 'ecomba/vim-ruby-refactoring'
+
+" save and load sessions
+nmap <leader>ss :mksession! ~/.config/nvim/session/mysession.vim<CR>
+nmap <leader>sl :source ~/.config/nvim/session/mysession.vim<CR>
 
 nnoremap U :UndotreeToggle<CR>
 if has("persistent_undo")
@@ -341,6 +348,8 @@ require'nvim-treesitter.configs'.setup {
         },
       },
 }
+
+require'lspconfig'.stimulus_ls.setup{}
 EOF
 
 nnoremap <Leader>c :call ConcealCSSClasses()<cr>
@@ -358,19 +367,19 @@ function! ConcealCSSClasses() abort
   endif
 endfunction
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" MULTIPURPOSE TAB KEY
-" Indent if we're at the beginning of a line. Else, do completion.
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" function! InsertTabWrapper()
-"   let col = col('.') - 1
-"   if !col || getline('.')[col - 1] !~ '\k'
-"     return "\<tab>"
-"   else
-"     return "\<c-n>"
-"   endif
-" endfunction
-" inoremap <expr> <tab> InsertTabWrapper()
-" inoremap <s-tab> <c-p>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+ " MULTIPURPOSE TAB KEY
+ " Indent if we're at the beginning of a line. Else, do completion.
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+ function! InsertTabWrapper()
+   let col = col('.') - 1
+   if !col || getline('.')[col - 1] !~ '\k'
+     return "\<tab>"
+   else
+     return "\<c-n>"
+   endif
+ endfunction
+ inoremap <expr> <tab> InsertTabWrapper()
+ inoremap <s-tab> <c-p>
 
 " That's all, folks!
