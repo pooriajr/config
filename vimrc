@@ -259,7 +259,10 @@ nmap <silent> <leader>tf :TestFile<CR>
 nmap <silent> <leader>ta :TestSuite<CR>
 nmap <silent> <leader>tl :TestLast<CR>
 nmap <silent> <leader>tg :TestVisit<CR>
-let test#strategy = "neovim"
+let test#strategy = 'neovim_sticky'
+let g:test#neovim_sticky#kill_previous = 1  " Try to abort previous run
+let g:test#preserve_screen = 0  " Clear screen from previous run
+let test#neovim_sticky#reopen_window = 1 " Reopen terminal split if not visible
 
 " LSP
 Plug 'neovim/nvim-lspconfig'
@@ -281,11 +284,11 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" Plug 'github/copilot.vim'
-" map <leader>cp :Copilot panel<cr>
-" let g:copilot_filetypes = {
-"       \ '*': v:true,
-"       \ }
+Plug 'github/copilot.vim'
+map <leader>cp :Copilot panel<cr>
+let g:copilot_filetypes = {
+      \ '*': v:true,
+      \ }
 
 Plug 'pooriar/codi.vim'
 map <leader>co :Codi<cr>
@@ -371,15 +374,15 @@ endfunction
  " MULTIPURPOSE TAB KEY
  " Indent if we're at the beginning of a line. Else, do completion.
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
- function! InsertTabWrapper()
-   let col = col('.') - 1
-   if !col || getline('.')[col - 1] !~ '\k'
-     return "\<tab>"
-   else
-     return "\<c-n>"
-   endif
- endfunction
- inoremap <expr> <tab> InsertTabWrapper()
- inoremap <s-tab> <c-p>
+ " function! InsertTabWrapper()
+ "   let col = col('.') - 1
+ "   if !col || getline('.')[col - 1] !~ '\k'
+ "     return "\<tab>"
+ "   else
+ "     return "\<c-n>"
+ "   endif
+ " endfunction
+ " inoremap <expr> <tab> InsertTabWrapper()
+ " inoremap <s-tab> <c-p>
 
 " That's all, folks!
